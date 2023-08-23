@@ -8,6 +8,7 @@ defaultContentLanguage = "zh"
 enableRobotsTXT = true
 paginate = 10
 summaryLength = 0
+hasCJKLanguage = true
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
@@ -15,5 +16,7 @@ summaryLength = 0
 [permalinks]
   [permalinks.page]
     posts = '/posts/:slug/'
+    copyright = '/copyright/'
   [permalinks.section]
     posts = '/posts/'
+    copyright = '/copyright/'

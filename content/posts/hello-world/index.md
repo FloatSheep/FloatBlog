@@ -5,8 +5,8 @@ categories: "hello"
 tags: ["welcome", "new", "about", "first"]
 draft: false
 ---
-# 快速开始
-# Hugo 帮助
+## 快速开始
+## Hugo 帮助
 ```bash
 hugo help
 hugo is the main command, used to build your Hugo site.
@@ -80,28 +80,28 @@ Flags:
   -w, --watch                      watch filesystem for changes and recreate as needed
 
 Use "hugo [command] --help" for more information about a command.```
-# 创建一篇文章
+## 创建一篇文章
 ```bash
 hugo new post/hello-world.md
 ```
-# 运行本地服务器
+## 运行本地服务器
 ```bash
 hugo server -D
 ```
-# 构建静态网页
+## 构建静态网页
 ```bash
 hugo -D
 ```
 
-# 强制清除 Public 文件夹
+## 强制清除 Public 文件夹
 
 ```bash
 hugo -F --cleanDestinationDir
 ```
-# 部署网站
+## 部署网站
 作为参考，我使用 Github 来托管 Hugo 网站源代码，使用 Cloudflare Pages 集成部署网站
 
 更多信息，你可以参考 Hugo 官方文档的 部署 部分
 
-# 更多信息
+## 更多信息
 请查看 文档 了解更多信息。如果你在使用 Hugo 时遇到任何问题，你可以在 故障排除 中找到答案，或者在 GitHub 上寻求帮助

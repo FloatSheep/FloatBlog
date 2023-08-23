@@ -1,3 +1,4 @@
-baseURL = 'https://blog.hesiy.cn/'
+# baseURL = 'https://blog.hesiy.cn/'
 languageCode = 'zh-cn'
 title = "FloatSheep's Blog"
+hasCJKLanguage = true

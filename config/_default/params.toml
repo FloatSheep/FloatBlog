@@ -17,7 +17,7 @@ enableImageLazyLoading = true
 fingerprintAlgorithm = "sha256"
 
 [header]
-  layout = "basic" # valid options: basic, hamburger, hybrid, custom
+  layout = "custom" # valid options: basic, hamburger, hybrid, custom
   # logo = "author.jpg"
   # logoDark = "img/dark-logo.jpg"
   showTitle = true
@@ -51,6 +51,10 @@ fingerprintAlgorithm = "sha256"
   showWordCount = true
   showComments = true
   # sharingLinks = ["facebook", "twitter", "mastodon", "pinterest", "reddit", "linkedin", "email"]
+    [word_count]
+    one = "{{ .Count }} word"
+    other = "{{ .Count }} words"
+
 
 [list]
   showBreadcrumbs = false
