@@ -93,13 +93,15 @@ hugo server -D
 hugo -D
 ```
 
-# force clean public folder
+# 强制清除 Public 文件夹
 
+```bash
 hugo -F --cleanDestinationDir
-部署网站#
+```
+# 部署网站
 作为参考，我使用 Github 来托管 Hugo 网站源代码，使用 Cloudflare Pages 集成部署网站
 
 更多信息，你可以参考 Hugo 官方文档的 部署 部分
 
-更多信息#
+# 更多信息
 请查看 文档 了解更多信息。如果你在使用 Hugo 时遇到任何问题，你可以在 故障排除 中找到答案，或者在 GitHub 上寻求帮助
