@@ -1,0 +1,19 @@
+# -- Site Configuration --
+# Refer to the theme docs for more details about each of these parameters.
+# https://jpanther.github.io/congo/docs/getting-started/
+
+# baseURL = "https://blog.hesiy.cn/"
+defaultContentLanguage = "zh"
+
+enableRobotsTXT = true
+paginate = 10
+summaryLength = 0
+
+[outputs]
+  home = ["HTML", "RSS", "JSON"]
+
+[permalinks]
+  [permalinks.page]
+    posts = '/posts/:slug/'
+  [permalinks.section]
+    posts = '/posts/'
