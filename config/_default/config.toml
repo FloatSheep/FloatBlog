@@ -20,3 +20,6 @@ hasCJKLanguage = true
   [permalinks.section]
     posts = '/posts/'
     copyright = '/copyright/'
+
+[params]
+    dateFormat = "2006 年 01 月 02 日"

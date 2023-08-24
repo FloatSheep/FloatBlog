@@ -2,3 +2,6 @@
 languageCode = 'zh-cn'
 title = "FloatSheep's Blog"
 hasCJKLanguage = true
+
+[params]
+    dateFormat = "2006 年 01 月 02 日"

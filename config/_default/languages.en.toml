@@ -3,14 +3,14 @@ languageName = "English"
 weight = 1
 
 title = "FloatSheep's Blog"
- copyright = "© 2023 FloatSheep:thinking_face:"
+ copyright = "© 2023 FloatSheep:thinking_face: & 全站约 {{< wordCount \"all\" >}}"
 
 [params]
   isoCode = "us"
   displayName = "US"
   rtl = false
 
-  dateFormat = "2006 年 01 月 01 日"
+  dateFormat = "2006 年 01 月 02 日"
 
   # mainSections = ["section1", "section2"]
    description = "I don't know..."

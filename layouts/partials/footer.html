@@ -94,7 +94,27 @@
             <a>图床支持 </a>
             <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://www.dogecast.com/" target="_blank" rel="noopener noreferrer">DogeDoge</a>
             <a> | </a>
+            <span class="">用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span class="hover">握手时 IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span class="hover">HTTP 握手协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span></span><span> | </span>
+            <script>
+                fetch('https://blog.hesiy.cn/cdn-cgi/trace')
+                .then(response => response.text())
+                .then(data => {
+                    const lines = data.split('\n');
+                    const nodeInfo = lines.find(line => line.startsWith('colo=')).substring(5);
+                    const ipInfo = lines.find(line => line.startsWith('loc=')).substring(4);
+                    const httpInfo = lines.find(line => line.startsWith('http=')).substring(5);
 
+                    const nodeInfoElement = document.getElementById('node-info');
+                    nodeInfoElement.textContent = `${nodeInfo}`;
+                    const ipInfoElement = document.getElementById('country');
+                    ipInfoElement.textContent = `${ipInfo}`;
+                    const httpInfoElement = document.getElementById('http');
+                    httpInfoElement.textContent = `${httpInfo}`;
+                })
+                .catch(error => {
+                    console.error('发生错误：', error);
+                });
+            </script>
             {{ i18n "footer.powered_by" (dict "Hugo" $hugo "Congo" $congo) | safeHTML }}
           </p>
         {{ end }}

@@ -1,0 +1,52 @@
+{{ $scratch := newScratch }}
+{{ if eq (.Get 0) "posts" }}
+  {{ range (where .Site.RegularPages "Type" "in" "posts") }}
+    {{ $scratch.Add "wordcount" .WordCount }}
+  {{ end }}
+{{ else if eq (.Get 0) "weekly" }}
+  {{ range (where .Site.RegularPages "Type" "in" "weekly") }}
+    {{ $scratch.Add "wordcount" .WordCount }}
+  {{ end }}
+{{ else if eq (.Get 0) "all" }}
+  {{ range (where .Site.RegularPages "Type" "in" (slice "posts" "weekly")) }}
+    {{ $scratch.Add "wordcount" .WordCount }}
+  {{ end }}
+{{ end }}
+{{ $scratch.Get "wordcount" | lang.NumFmt 0 }} 字
+
+{{ $wordcount := $scratch.Get "$wordcount" }}
+{{ $output := "" }}
+{{ if ge $wordcount 1000000 }} 
+  {{ $output = "《战争与和平》" }}
+{{ else if ge $wordcount 850000 }} 
+  {{ $output = "《应物兄》" }}
+{{ else if ge $wordcount 80000 }} 
+  {{ $output = "《呐喊》" }}
+{{ else if ge $wordcount 50000 }} 
+  {{ $output = "《小王子》" }}
+{{ else if gt $wordcount 4000 }} 
+  {{ $output = "《断魂枪》" }}
+{{ else if ge $wordcount 100000 }}
+  {{ $output = "《平凡的世界》" }}
+{{ else if ge $wordcount 100000 }} 
+  {{ $output = "《活着》" }}
+{{ else if ge $wordcount 100000 }} 
+  {{ $output = "《百年孤独》" }}
+{{ else if ge $wordcount 100000 }} 
+  {{ $output = "《红楼梦》" }}
+{{ else if ge $wordcount 100000 }} 
+  {{ $output = "《1984》" }}
+{{ else if ge $wordcount 100000 }} 
+  {{ $output = "《追风筝的人》" }}
+{{ else if ge $wordcount 100000 }} 
+  {{ $output = "《人间失格》" }}
+{{ else if ge $wordcount 100000 }} 
+  {{ $output = "《局外人》" }}
+{{ else if ge $wordcount 600 }} 
+  {{ $output = "不知名日记集" }}
+{{ else if ge $wordcount 800 }} 
+  {{ $output = "不知名小作文集" }}
+{{ else }}
+  {{ $output = "不知名传记" }}
+{{ end }}
+相当于一本 {{ $output }}
