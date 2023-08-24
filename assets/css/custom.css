@@ -9,7 +9,8 @@
 
 @font-face {
     font-family: LXGW;
-    src: url('../fonts/LXGWWenKai-Regular.ttf');
+    font-display: auto;
+    src: url('https://font.onmicrosoft.cn/floatsheep-hosting@1.0.1/static/fonts/LXGWWenKai-Regular.ttf');
 }
 
 html {

@@ -1,0 +1,11 @@
+{
+  "name": "floatsheep-hosting",
+  "version": "1.0.1",
+  "description": "Float OSS",
+  "main": "index.txt",
+  "scripts": {
+    "test": "echo \"Empty\""
+  },
+  "author": "FloatSheep",
+  "license": "MIT"
+}
