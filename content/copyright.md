@@ -6,6 +6,7 @@ showDate: false
 showWordCount: false
 showTableOfContents: false
 showPagination: false
+xml: false
 ---
 
 {{< alert >}}

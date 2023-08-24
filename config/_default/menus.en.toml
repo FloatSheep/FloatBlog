@@ -26,6 +26,11 @@
   weight = 30
 
 [[main]]
+  name = "友链"
+  pageRef = "friends"
+  weight = 30
+
+[[main]]
   identifier = "搜索"
   weight = 99
   [main.params]

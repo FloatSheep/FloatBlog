@@ -6,6 +6,8 @@ tags: ["hello world"]
 cover: cover.webp
 thumbnail: cover.webp
 draft: false
+showSummary: true
+summary: "Hello World"
 ---
 ## 快速开始
 ## Hugo 帮助

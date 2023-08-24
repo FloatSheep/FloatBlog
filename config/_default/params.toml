@@ -18,7 +18,7 @@ fingerprintAlgorithm = "sha256"
 
 [header]
   layout = "custom" # valid options: basic, hamburger, hybrid, custom
-  # logo = "author.jpg"
+  # logo = "avatar.webp"
   # logoDark = "img/dark-logo.jpg"
   showTitle = true
 

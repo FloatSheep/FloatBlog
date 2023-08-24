@@ -1,0 +1,75 @@
+{{ define "main" }}
+<article>
+  <style>
+    #link {
+      color: var(--tw-prose-links);
+      text-decoration: underline;
+      font-weight: 500;
+      text-decoration-color: rgba(var(--color-primary-300), 1);
+    }
+    body a,
+    body button {
+      transition-property: color, background-color, border-color,
+        text-decoration-color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 150ms;
+    }
+    #link:hover {
+      color: rgba(var(--color-neutral), 1);
+      text-decoration: none;
+      background-color: rgba(var(--color-primary-600), 1);
+      border-radius: 0.09rem;
+    }
+    #img-friends {
+        width: 660px;
+        height: 440px;
+    }
+  </style>
+  <h1 class="mb-3 text-4xl font-extrabold">友链</h1>
+  <center>
+    <figure>
+      <img
+        id="img-friends"
+        class="mx-auto my-0 rounded-md"
+        alt="friends"
+        loading="lazy"
+        srcset="https://rmt.ladydaily.com/fetch/hajeekn/storage/friends.webp"
+        src="https://rmt.ladydaily.com/fetch/hajeekn/storage/friends.webp"
+      />
+      <figcaption class="text-center">
+        插画由 AI 绘制
+      </figcaption>
+    </figure>
+  </center>
+  <div class="friends" id="friends-container">
+    <div class="friends-list-div text-center overflow-auto">
+      {{ range $index, $friend := .Site.Data.friends }}
+      <div id="fcard" class="friends-div relative overflow-hidden rounded">
+        <a
+          target="_blank"
+          href="{{ $friend.url | safeURL }}"
+          title="{{ $friend.nickname }}"
+        >
+          <img
+            class="rounded-full"
+            src="{{ $friend.avatar }}"
+            alt="{{ $friend.nickname }}"
+            loading="lazy"
+          />
+          <span
+            class="friends-name block text-lg font-semibold text-neutral-900 dark:text-neutral overflow-hidden"
+            >{{ $friend.nickname }}</span
+          >
+          <span class="friends-info block text-base font-medium overflow-hidden"
+            >{{ $friend.description }}</span
+          ></a
+        >
+      </div>
+      {{ end }}
+    </div>
+  </div>
+  <p align="center">
+    在 <a id="link" href="/container">友链集装箱</a> 页面互换或更新友链信息
+  </p>
+</article>
+{{ end }}
