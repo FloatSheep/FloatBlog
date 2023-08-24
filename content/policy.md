@@ -15,6 +15,7 @@ _FloatSheep's Blog_ 是一款由 _FloatSheep_ （以下简称“我们”）提�
 
 **您使用或继续使用我们的服务，即意味着同意我们按照本《隐私政策》收集、使用、储存和分享您的相关信息。**
 
+
 如对本《隐私政策》或相关事宜有任何问题，请通过 **<sheep@hesiy.cn>** 与我们联系。
 
 ## 1\. 我们收集的信息
@@ -36,6 +37,7 @@ _FloatSheep's Blog_ 是一款由 _FloatSheep_ （以下简称“我们”）提�
 * Cloudflare
 * Self-Hosting Giscus.app
 * GitHub API
+* Self-Hosting Analytics
 
 ## 服务组成
 ### Cloudflare
@@ -56,6 +58,14 @@ _FloatSheep's Blog_ 是一款由 _FloatSheep_ （以下简称“我们”）提�
 
 有关更多信息，请参阅 [Giscus.App][4] 的 [隐私政策][5] 和 [GitHub][6] 的 [隐私声明][7]
 
+### Self-Hosting Analytics
+
+我们的统计由 **Self-Hosting Analytics** 提供，由 [umami-software][8] 开发，当您访问我们的网站时，您的基本信息将会被收集，提供给我们分析
+
+当用户访问我们的网站，则意味着用户同意我们收集 **IP 地址**、**国家**、**设备（终端）信息**、**操作系统信息** 等必要信息，同意我们记录用户的行为并对其进行分类
+
+有关更多信息，请参阅 [umami][9] 的 [隐私政策][10]
+
 ## 2\. 信息的存储
 
 **2.1 信息存储的方式和期限**
@@ -65,8 +75,8 @@ _FloatSheep's Blog_ 是一款由 _FloatSheep_ （以下简称“我们”）提�
 
 **2.2 信息存储的地域**
 
-* 我们会按照法律法规规定，将境内收集的用户个人信息存储于中国境内。
-* 目前我们不会跨境传输或存储您的个人信息。将来如需跨境传输或存储的，我们会向您告知信息出境的目的、接收方、安全保证措施和安全风险，并征得您的同意。
+* 您的信息会通过 [Cloudflare][1] 其遍布全球的节点传输至**美国**(或其周边地点)
+* 您的信息也会通过 **Self-Hosting Analytics** 服务传输至**美国**、**新加坡**(或其周边地点)
 
 **2.3 产品或服务停止运营时的通知**
 
@@ -137,3 +147,9 @@ _FloatSheep's Blog_ 是一款由 _FloatSheep_ （以下简称“我们”）提�
 [6]: https://github.com/
 
 [7]: https://docs.github.com/zh/site-policy/privacy-policies/github-privacy-statement
+
+[8]: https://github.com/umami-software
+
+[9]: https://umami.is/
+
+[10]: https://umami.is/privacy
