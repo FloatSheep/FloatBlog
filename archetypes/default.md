@@ -1,6 +1,8 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-draft: true
+cover: cover.webp
+thumbnail: cover.webp
+draft: false
 ---
 

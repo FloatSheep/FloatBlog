@@ -1,16 +1,16 @@
-languageCode = "cn"
-languageName = "Chinese"
+languageCode = "en"
+languageName = "English"
 weight = 1
 
 title = "FloatSheep's Blog"
  copyright = "© 2023 FloatSheep:thinking_face:"
 
 [params]
-  isoCode = "cn"
-  displayName = "CN"
+  isoCode = "us"
+  displayName = "US"
   rtl = false
 
-  dateFormat = "2006-01-02"
+  dateFormat = "2006 年 01 月 01 日"
 
   # mainSections = ["section1", "section2"]
    description = "I don't know..."

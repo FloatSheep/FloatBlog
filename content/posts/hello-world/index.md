@@ -2,7 +2,9 @@
 title: "Hello World"
 date: 2023-08-23T18:08:18+08:00
 categories: "hello"
-tags: ["welcome", "new", "about", "first"]
+tags: ["hello world"]
+cover: cover.webp
+thumbnail: cover.webp
 draft: false
 ---
 ## 快速开始

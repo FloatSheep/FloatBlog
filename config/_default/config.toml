@@ -3,7 +3,7 @@
 # https://jpanther.github.io/congo/docs/getting-started/
 
 # baseURL = "https://blog.hesiy.cn/"
-defaultContentLanguage = "zh"
+defaultContentLanguage = "en"
 
 enableRobotsTXT = true
 paginate = 10

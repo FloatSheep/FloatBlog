@@ -38,15 +38,15 @@
  [[footer]]
    name = "版权声明"
    pageRef = "copyright"
-   url = "../copyright"
+   url = "/copyright"
    weight = 10
  [[footer]]
    name = "隐私政策"
    pageRef = "policy"
-   url = "../policy"
+   url = "/policy"
    weight = 10
  [[footer]]
    name = "网站地图"
    pageRef = "sitemap.xml"
-   url = "../sitemap.xml"
+   url = "/sitemap.xml"
    weight = 10

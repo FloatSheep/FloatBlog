@@ -37,7 +37,7 @@ fingerprintAlgorithm = "sha256"
   showDate = true
   showDateUpdated = true
   showAuthor = true
-  showBreadcrumbs = false
+  showBreadcrumbs = true
   showDraftLabel = true
   showEdit = false
   # editURL = "https://github.com/username/repo/"
@@ -51,13 +51,14 @@ fingerprintAlgorithm = "sha256"
   showWordCount = true
   showComments = true
   # sharingLinks = ["facebook", "twitter", "mastodon", "pinterest", "reddit", "linkedin", "email"]
-    [word_count]
-    one = "{{ .Count }} word"
-    other = "{{ .Count }} words"
+
+[word_count]
+one = "{{ .Count }} 字"
+other = "{{ .Count }} 字"
 
 
 [list]
-  showBreadcrumbs = false
+  showBreadcrumbs = true
   showSummary = false
   showTableOfContents = true
   showTaxonomies = false
