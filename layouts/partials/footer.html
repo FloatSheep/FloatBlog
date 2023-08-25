@@ -91,10 +91,10 @@
               href="https://gohugo.io/" target="_blank" rel="noopener noreferrer">Hugo</a>`
             }}
             {{ $congo := printf `<a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>` }}
-            <a>图床支持 </a>
+            <span>图床支持 </span>
             <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://www.dogecast.com/" target="_blank" rel="noopener noreferrer">DogeDoge</a>
-            <a> | </a>
-            <span class="">用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span class="hover">握手时 IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span class="hover">HTTP 握手协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span></span><span> | </span>
+            <span> | </span>
+            <span>用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span>IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span>HTTP 协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span></span><br />
             <script>
                 fetch('https://blog.hesiy.cn/cdn-cgi/trace')
                 .then(response => response.text())
