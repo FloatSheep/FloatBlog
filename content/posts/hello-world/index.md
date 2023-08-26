@@ -1,7 +1,8 @@
 ---
 title: "Hello World"
+slug: "hello-world"
 date: 2023-08-23T18:08:18+08:00
-categories: "hello"
+categories: "Deploy"
 tags: ["hello world"]
 cover: cover.webp
 thumbnail: cover.webp

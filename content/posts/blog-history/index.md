@@ -1,16 +1,17 @@
 ---
 title: "追溯 | Blog 回忆录"
+slug: "blogging-memories"
 date: 2023-08-25T20:33:10+08:00
 cover: cover.webp
 thumbnail: cover.webp
 draft: false
-categories: "Blog"
+categories: "Deploy"
 tags: ["Blog", "History"]
 showSummary: true
 summary: 告别以前，迎接未来
 ---
 
-## Part 1: 罪恶之路
+## 罪恶之路
 
 2019 年，我跟着互联网上的教程，使用 [Hexo][1] 搭建起了我的博客
 
@@ -60,7 +61,7 @@ summary: 告别以前，迎接未来
 
 不过由于一些不可抗力因素{{< heimu >}}其实就是懒{{< /heimu >}}，这次换主题没有成功{{< emoji data="face_with_steam_from_nose" >}}{{< /emoji >}}
 
-## Part 2: 交叉路口
+## 交叉路口
 
 看到 [苏卡卡][6] 和 [宝硕][7] 都是 **Next.js**
 
@@ -78,7 +79,7 @@ summary: 告别以前，迎接未来
 
 后来因为维护太麻烦了{{< heimu >}}主要是 React 让我头疼，加上我的技术栈不是 React{{< /heimu >}}于是果断抛弃
 
-## Part 3: 安稳之路
+## 安稳之路
 
 最后我选择了 [Hugo][8] 作为 [Hexo][1] 的替代品
 
