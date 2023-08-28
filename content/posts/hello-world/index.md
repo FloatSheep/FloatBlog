@@ -5,7 +5,7 @@ date: 2023-08-23T18:08:18+08:00
 categories: "Deploy"
 tags: ["hello world"]
 cover: cover.webp
-thumbnail: /covers/hello-world/cover.webp
+thumbnail: cover.webp
 draft: false
 showSummary: true
 summary: "Hello World"
