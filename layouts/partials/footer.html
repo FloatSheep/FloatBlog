@@ -1,4 +1,4 @@
-<footer class="py-10 print:hidden">
+<footer id="order-footer" class="py-10 print:hidden">
     {{/* Footer menu */}}
     {{ if .Site.Menus.footer }}
       <nav class="pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
@@ -112,9 +112,7 @@
                     const httpInfoElement = document.getElementById('http');
                     httpInfoElement.textContent = `${httpInfo}`;
                     const originElement = document.getElementById('reqURL');
-                    if (reqURL.indexOf = `hesiy.cn`) {
-                        originElement.innerText = `Trace API(origin)`;
-                    };
+                    originElement.innerText = `${reqURL}`;
                 })
                 .catch(error => {
                     console.error('Data get：', error);
