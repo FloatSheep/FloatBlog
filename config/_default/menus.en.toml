@@ -31,6 +31,11 @@
   weight = 30
 
 [[main]]
+  name = "关于"
+  pageRef = "about"
+  weight = 40
+
+[[main]]
   identifier = "搜索"
   weight = 99
   [main.params]
