@@ -66,7 +66,7 @@ summary: 什么是 Shortcodes & 如何编写自己的 Shortcodes
 
 我们在里面写一段简单的 **HTML** 
 
-让我们可以通过 `color=colorname` 的方式传参给 **Shortcodes**，所以我们使用  `{{ with .Get "color" }}` 
+让我们可以通过 `color=colorname` 的方式传参给 **Shortcodes**，所以我们使用  `{{ with .Get "color" }}`
 
 ![image-20230826104800765](https://rmt.ladydaily.com/fetch/hajeekn/storage/202308261048844.png)
 
