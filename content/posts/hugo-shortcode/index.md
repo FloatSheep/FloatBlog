@@ -2,8 +2,8 @@
 title: "Hugo Shortcodes"
 slug: "hugo-shortcodes"
 date: 2023-08-26T10:10:04+08:00
-cover: cover.webp
-thumbnail: cover.webp
+cover: cover.svg
+thumbnail: cover.svg
 draft: false
 categories: "Shortcodes"
 tags: ["Hugo", "Blog"]

@@ -2,8 +2,8 @@
 title: "追溯 | Blog 回忆录"
 slug: "blogging-memories"
 date: 2023-08-25T20:33:10+08:00
-cover: cover.webp
-thumbnail: cover.webp
+cover: cover.svg
+thumbnail: cover.svg
 draft: false
 categories: "Deploy"
 tags: ["Blog", "History"]
