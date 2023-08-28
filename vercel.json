@@ -1,7 +1,7 @@
 {
-    "build": {
-        "env": {
-          "HUGO_VERSION": "0.117.0"
-        }
-    }
-}
+    "version": 2,
+    "routes": [
+        {"src": "/(.*)","dest": "https://floatblog.pages.dev/$1"}
+    ]
+  }
+  
