@@ -94,15 +94,20 @@
             <span>图床支持 </span>
             <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://www.dogecast.com/" target="_blank" rel="noopener noreferrer">DogeDoge</a>
             <span> | </span>
-            <span>用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span>IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span>HTTP 协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span></span><br />
+            <span>用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span>IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span>HTTP 协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span><span class="hover:decoration-primary-400 hover:text-primary-500" id="reqURL">Third-party(warning)</span></span><br />
             <script>
-                fetch('https://blog.hesiy.cn/cdn-cgi/trace')
+                fetch('https://trace.hesiy.cn/cdn-cgi/trace')
                 .then(response => response.text())
                 .then(data => {
                     const lines = data.split('\n');
                     const nodeInfo = lines.find(line => line.startsWith('colo=')).substring(5);
                     const ipInfo = lines.find(line => line.startsWith('loc=')).substring(4);
                     const httpInfo = lines.find(line => line.startsWith('http=')).substring(5);
+                    const reqURL = lines.find(line => line.startsWith('h=')).substring(2);
+                    if (reqURL = 'trace.hesiy.cn') {
+                        const originElement = document.getElementById('reqURL');
+                        originElement.innerText = `Trace API`;
+                    }
 
                     const nodeInfoElement = document.getElementById('node-info');
                     nodeInfoElement.textContent = `${nodeInfo}`;
