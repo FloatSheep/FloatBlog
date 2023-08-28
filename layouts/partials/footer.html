@@ -94,7 +94,7 @@
             <span>图床支持 </span>
             <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://www.dogecast.com/" target="_blank" rel="noopener noreferrer">DogeDoge</a>
             <span> | </span>
-            <span>用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span>IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span>HTTP 协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span><span class="hover:decoration-primary-400 hover:text-primary-500" id="reqURL">Third-party(warning)</span></span><br />
+            <span>用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span>IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span>HTTP 协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span> & <span>到达点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="reqURL">Third-party(warning)</span></span></span><br />
             <script>
                 fetch('https://trace.hesiy.cn/cdn-cgi/trace')
                 .then(response => response.text())
@@ -104,20 +104,20 @@
                     const ipInfo = lines.find(line => line.startsWith('loc=')).substring(4);
                     const httpInfo = lines.find(line => line.startsWith('http=')).substring(5);
                     const reqURL = lines.find(line => line.startsWith('h=')).substring(2);
-                    if (reqURL = 'trace.hesiy.cn') {
-                        const originElement = document.getElementById('reqURL');
-                        originElement.innerText = `Trace API`;
-                    }
-
+                    console.log('Request url: ' + reqURL);
                     const nodeInfoElement = document.getElementById('node-info');
                     nodeInfoElement.textContent = `${nodeInfo}`;
                     const ipInfoElement = document.getElementById('country');
                     ipInfoElement.textContent = `${ipInfo}`;
                     const httpInfoElement = document.getElementById('http');
                     httpInfoElement.textContent = `${httpInfo}`;
+                    const originElement = document.getElementById('reqURL');
+                    if (reqURL.indexOf = `hesiy.cn`) {
+                        originElement.innerText = `Trace API(origin)`;
+                    };
                 })
                 .catch(error => {
-                    console.error('发生错误：', error);
+                    console.error('Data get：', error);
                 });
             </script>
             {{ i18n "footer.powered_by" (dict "Hugo" $hugo "Congo" $congo) | safeHTML }}
