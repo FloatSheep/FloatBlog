@@ -111,36 +111,87 @@ html {
   display: block;
 }
 .plugin-heimu {
-    color: #000000;
-    background-color: #000000;
-    transition: .1s;
-    border-radius: 10.1%;
-    -webkit-transition: .1s;
-    -moz-transition: .1s;
-    -ms-transition: .1s;
-    -o-transition: .1s;
-    -webkit-border-radius: 10.1%;
-    -moz-border-radius: 10.1%;
-    -ms-border-radius: 10.1%;
-    -o-border-radius: 10.1%;
+  color: #000000;
+  background-color: #000000;
+  transition: 0.1s;
+  border-radius: 10.1%;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
+  -webkit-border-radius: 10.1%;
+  -moz-border-radius: 10.1%;
+  -ms-border-radius: 10.1%;
+  -o-border-radius: 10.1%;
 }
 .plugin-heimu:hover {
-    color: #fff;
-    border-radius: 10.1%;
-    text-shadow: 0 0 5px #fff, 0 0 5px #fff;
-    transition: .1s;
-    -webkit-transition: .1s;
-    -moz-transition: .1s;
-    -ms-transition: .1s;
-    -o-transition: .1s;
-    -webkit-border-radius: 10.1%;
-    -moz-border-radius: 10.1%;
-    -ms-border-radius: 10.1%;
-    -o-border-radius: 10.1%;
+  color: #fff;
+  border-radius: 10.1%;
+  text-shadow: 0 0 5px #fff, 0 0 5px #fff;
+  transition: 0.1s;
+  -webkit-transition: 0.1s;
+  -moz-transition: 0.1s;
+  -ms-transition: 0.1s;
+  -o-transition: 0.1s;
+  -webkit-border-radius: 10.1%;
+  -moz-border-radius: 10.1%;
+  -ms-border-radius: 10.1%;
+  -o-border-radius: 10.1%;
 }
 .emoji-object {
-    display:inline-block;
-    padding-left: 2px;
-    padding-bottom: 2px;
-    height: 24px;
+  display: inline-block;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  height: 24px;
+}
+#footer-emoji {
+  display: inline-block;
+  padding-left: 2px;
+  padding-bottom: 2px;
+  height: 24px;
+}
+.loading {
+  display: block;
+  position: relative;
+  width: 6px;
+  height: 10px;
+
+  animation: rectangle infinite 1s ease-in-out -0.2s;
+
+  background-color: #000;
+}
+
+.loading:before,
+.loading:after {
+  position: absolute;
+  width: 6px;
+  height: 10px;
+  content: "";
+  background-color: #000;
+}
+
+.loading:before {
+  left: -14px;
+
+  animation: rectangle infinite 1s ease-in-out -0.4s;
+}
+
+.loading:after {
+  right: -14px;
+
+  animation: rectangle infinite 1s ease-in-out;
+}
+
+@keyframes rectangle {
+  0%,
+  80%,
+  100% {
+    height: 20px;
+    box-shadow: 0 0 #000;
+  }
+
+  40% {
+    height: 30px;
+    box-shadow: 0 -20px #000;
+  }
 }

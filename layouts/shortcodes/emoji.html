@@ -1,1 +1,1 @@
-<object loading="lazy" class="emoji-object" {{ with .Get "data" }}data="/svg/{{ . }}_color.svg"{{ end }}>{{ .Inner }}</object>
+<object loading="lazy" class="emoji-object" {{ with .Get "id" }}id="{{ . }}"{{ end }} {{ with .Get "data" }}data="/svg/{{ . }}_color.svg"{{ end }}>{{ .Inner }}</object>
