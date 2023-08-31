@@ -1,2 +1,24 @@
-<script async src="/js/custom.js" />
+<script async type="module" src="/js/custom.min.js"></script>
+<script type="module">
+    let intervalId
+
+    import { fakeCheck } from '/js/custom.min.js';
+
+      intervalId = setInterval(function() {
+        try {
+          if (debug) {
+            console.log('%c[Warning]: Debug Mode is Open!', 'color: gold; font-weight: bold;');
+            clearInterval(intervalId);
+            fakeCheck();
+          } else {}
+        } catch (error) {
+          if (error instanceof ReferenceError) {
+            console.log('%c[Info]: Debug Mode is close', 'color: green; font-weight: bold;');
+          } else {
+            console.log('%c[Error]: ' + error, 'color: red; font-weight: bold;');
+          }
+        }
+    }, 5000);
+
+</script>
 <script defer src="https://analytics.hesiy.cn/script.js" data-website-id="ae5d366e-4e34-4cfa-9a59-a46966660254"></script>
