@@ -94,48 +94,48 @@
             <span>图床支持 </span>
             <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://www.dogecast.com/" target="_blank" rel="noopener noreferrer">DogeDoge</a>
             <span> | </span>
-            <span>用户命中节点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="node-info">锟斤拷</span></span> & <span>IP 属地: <span class="hover:decoration-primary-400 hover:text-primary-500" id="country">锟斤拷</span></span> & <span>HTTP 协议: <span class="hover:decoration-primary-400 hover:text-primary-500" id="http">锟斤拷</span> & <span>到达点: <span class="hover:decoration-primary-400 hover:text-primary-500" id="reqURL">Unknown</span></span></span><br /><span>字体缓存状态: <span class="hover:decoration-primary-400 hover:text-primary-500" id="isCache"></span></span><br />
+            <span>字体缓存状态: <span class="hover:decoration-primary-400 hover:text-primary-500" id="isCache"></span></span><br />
             <script>
-              const cfnet = 'https://cloudflare.net/cdn-cgi/trace';
-              const hesiy = 'https://trace.hesiy.cn/cdn-cgi/trace';
+//               const cfnet = 'https://cloudflare.net/cdn-cgi/trace';
+// const hesiy = 'https://trace.hesiy.cn/cdn-cgi/trace';
 
-              const reqcfnet = fetch(cfnet);
-              const reqhesiy = fetch(hesiy);
+// const reqcfnet = fetch(cfnet);
+// const reqhesiy = fetch(hesiy);
 
               const isCacheElement = document.getElementById('isCache');
 
-              Promise.race([reqcfnet, reqhesiy])
-                .then(response => {
-                  return response.text();
-                })
-                .then(data => {
-                  console.log(data);
-                  const lines = data.split('\n');
-                  const nodeInfo = lines.find(line => line.startsWith('colo=')).substring(5);
-                  const ipInfo = lines.find(line => line.startsWith('loc=')).substring(4);
-                  const httpInfo = lines.find(line => line.startsWith('http=')).substring(5);
-                  const reqURL = lines.find(line => line.startsWith('h=')).substring(2);
-                  console.log('Request url: ' + reqURL);
-                  const nodeInfoElement = document.getElementById('node-info');
-                  nodeInfoElement.textContent = `${nodeInfo}`;
-                  const ipInfoElement = document.getElementById('country');
-                  ipInfoElement.textContent = `${ipInfo}`;
-                  const httpInfoElement = document.getElementById('http');
-                  httpInfoElement.textContent = `${httpInfo}`;
-                  const originElement = document.getElementById('reqURL');
-                  originElement.innerText = `${reqURL}`;
-                })
-                .catch(error => {
-                  console.log('%cFetch error: ' + error, 'color: red; font-weight: bold;');
-                  const nodeInfoElement = document.getElementById('node-info');
-                  nodeInfoElement.textContent = `锟斤拷`;
-                  const ipInfoElement = document.getElementById('country');
-                  ipInfoElement.textContent = `锟斤拷`;
-                  const httpInfoElement = document.getElementById('http');
-                  httpInfoElement.textContent = `锟斤拷`;
-                  const originElement = document.getElementById('reqURL');
-                  originElement.innerText = `锟斤拷`;
-                });
+//                Promise.race([reqcfnet, reqhesiy])
+//                .then(response => {
+//                  return response.text();
+//                })
+//                .then(data => {
+//                  console.log(data);
+//                  const lines = data.split('\n');
+//                  const nodeInfo = lines.find(line => line.startsWith('colo=')).substring(5);
+//                  const ipInfo = lines.find(line => line.startsWith('loc=')).substring(4);
+//                  const httpInfo = lines.find(line => line.startsWith('http=')).substring(5);
+//                  const reqURL = lines.find(line => line.startsWith('h=')).substring(2);
+//                  console.log('Request url: ' + reqURL);
+//                  const nodeInfoElement = document.getElementById('node-info');
+//                  nodeInfoElement.textContent = `${nodeInfo}`;
+//                  const ipInfoElement = document.getElementById('country');
+//                  ipInfoElement.textContent = `${ipInfo}`;
+//                  const httpInfoElement = document.getElementById('http');
+//                  httpInfoElement.textContent = `${httpInfo}`;
+//                  const originElement = document.getElementById('reqURL');
+//                  originElement.innerText = `${reqURL}`;
+//                })
+//                .catch(error => {
+//                  console.log('%cFetch error: ' + error, 'color: red; font-weight: bold;');
+//                  const nodeInfoElement = document.getElementById('node-info');
+//                  nodeInfoElement.textContent = `锟斤拷`;
+//                  const ipInfoElement = document.getElementById('country');
+//                  ipInfoElement.textContent = `锟斤拷`;
+//                  const httpInfoElement = document.getElementById('http');
+//                  httpInfoElement.textContent = `锟斤拷`;
+//                  const originElement = document.getElementById('reqURL');
+//                  originElement.innerText = `锟斤拷`;
+//                });
                 function checkStatus() {
                   function isFontCached() {
                     return localStorage.getItem('cachedFont') === 'true';
