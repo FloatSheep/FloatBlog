@@ -59,7 +59,7 @@ summary: 告别以前，迎接未来
     caption="主题 Demo"
     >}}
 
-不过由于一些不可抗力因素{{< heimu >}}其实就是懒{{< /heimu >}}，这次换主题没有成功{{< emoji data="face_with_steam_from_nose" >}}{{< /emoji >}}
+不过由于一些不可抗力因素{{< heimu >}}其实就是懒{{< /heimu >}}，这次换主题没有成功{{< emoji data="face_with_steam_from_nose_color" >}}{{< /emoji >}}
 
 ## 交叉路口
 
@@ -101,7 +101,7 @@ summary: 告别以前，迎接未来
 
 也许之后还会换上其他的构建工具,
 
-也许会一直保持这样{{< emoji data="face_with_tongue" >}}{{< /emoji >}}
+也许会一直保持这样{{< emoji data="face_with_tongue_color" >}}{{< /emoji >}}
 
 [1]: https://hexo.io
 [2]: https://github.com/WongMinHo/hexo-theme-miho

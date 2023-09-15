@@ -86,11 +86,11 @@ summary: 什么是 Shortcodes & 如何编写自己的 Shortcodes
 
 它还有更多用法，比如插入一个 **Emoji**
 
-{{< emoji data="face_with_tongue" / >}}
+{{< emoji data="face_with_tongue_color" / >}}
 
 我们还可以将它们融合在一起
 
-{{< colorfont color="green" >}} 泰库拉！{{< emoji data="smiling_face_with_sunglasses" / >}}{{</ colorfont >}}
+{{< colorfont color="green" >}} 泰库拉！{{< emoji data="smiling_face_with_sunglasses_color" / >}}{{</ colorfont >}}
 
 它还有许多的用法，就等各位去一一发掘了
 
