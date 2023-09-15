@@ -29,10 +29,6 @@ xml: false
 * 爱吃、爱宅
 * 拒绝写作，从我做起
 
-## yourself
-
-<div id="client-id"></div>
-
 ## copy......right?{{< emoji data="thinking_face_color" />}}
 
 除特别说明外，本站所有内容均在 **[署名-非商业性使用-相同方式共享 4.0 国际](/copyright/)** (CC BY-NC-SA 4.0) 协议下共享，在遵守该协议的许可说明下，您可以自由地进行衍生和再创作。
