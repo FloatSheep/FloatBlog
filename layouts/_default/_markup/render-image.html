@@ -4,7 +4,7 @@
 {{ $lazyLoad := $.Page.Site.Params.enableImageLazyLoading | default true }}
 {{ if findRE "^https?" $url.Scheme }}
   <figure>
-    <img
+    <img referrerpolicy="no-referrer"
       class="mx-auto my-0 rounded-md"
       src="{{ $url.String }}"
       alt="{{ $altText }}"
@@ -23,7 +23,7 @@
   {{ end }}
   {{ with $resource }}
     <figure>
-      <img
+      <img referrerpolicy="no-referrer"
         class="mx-auto my-0 rounded-md"
         {{ if eq .MediaType.SubType "svg" }}
           src="{{ .RelPermalink }}"
@@ -48,7 +48,7 @@
     </figure>
   {{ else }}
     <figure>
-      <img
+      <img referrerpolicy="no-referrer"
         class="mx-auto my-0 rounded-md"
         src="{{ $url.String }}"
         alt="{{ $altText }}"
