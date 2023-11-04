@@ -92,17 +92,13 @@
             }}
             {{ $congo := printf `<a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://github.com/jpanther/congo" target="_blank" rel="noopener noreferrer">Congo</a>` }}
             <span>图床支持 </span>
-            <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://www.dogecast.com/" target="_blank" rel="noopener noreferrer">DogeDoge</a>
-            <span> | </span>
-            <span>字体缓存状态: <span class="hover:decoration-primary-400 hover:text-primary-500" id="isCache"></span></span><br />
+            <a class="hover:underline hover:decoration-primary-400 hover:text-primary-500" href="https://www.dogecast.com/" target="_blank" rel="noopener noreferrer">DogeDoge</a><br />
             <script>
 //               const cfnet = 'https://cloudflare.net/cdn-cgi/trace';
 // const hesiy = 'https://trace.hesiy.cn/cdn-cgi/trace';
 
 // const reqcfnet = fetch(cfnet);
 // const reqhesiy = fetch(hesiy);
-
-              const isCacheElement = document.getElementById('isCache');
 
 //                Promise.race([reqcfnet, reqhesiy])
 //                .then(response => {
@@ -140,11 +136,8 @@
                   function isFontCached() {
                     return localStorage.getItem('cachedFont') === 'true';
                   }
-                  isCacheElement.textContent = '检查中...';
                   if (isFontCached()) {
-                    isCacheElement.textContent = '已缓存';
                   } else {
-                    isCacheElement.textContent = '未缓存';
                   }
                 }
                 checkStatus();
