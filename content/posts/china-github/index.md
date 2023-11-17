@@ -12,6 +12,8 @@ copyright_author_href: https://blog.slqwq.cn
 author: Hajeekn
 ---
 
+我的博客即将同步至腾讯云开发者社区，邀请大家一同入驻：[https://cloud.tencent.com/developer/support-plan?invite_code=3gll8aqhc2kgg][1]
+
 ## Dev-Sidecar
 
 > 请注意,由于开发者边车的 Gitee 仓库被封锁,所以这个项目不再更新了
@@ -61,3 +63,5 @@ sudo git config --global https.proxy 'socks5://127.0.0.1:8868'
 ## 题外话
 
 加速 npm 还是 Dev-Sidecar 和 local-npm 好用一点
+
+[1]: https://cloud.tencent.com/developer/support-plan?invite_code=3gll8aqhc2kgg
