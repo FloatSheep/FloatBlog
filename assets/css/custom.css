@@ -195,3 +195,43 @@ html {
     box-shadow: 0 -20px #000;
   }
 }
+
+.typer {
+  position: relative;
+  color: rgba(255, 255, 255, 0.1);
+  animation: displayText 9s infinite;
+  animation-delay: calc(-3s * var(--i));
+}
+
+@keyframes displayText {
+  0% {
+    display: inline-block;
+  }
+  33.33%, 100% {
+    display: none;
+  }
+}
+
+.typer:before {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  color: #185ABD;
+  border-right: 4px solid #185ABD;
+  filter: drop-shadow(0 0 5px #185ABD);
+  animation: animate 3s linear infinite;
+  -webkit-filter: drop-shadow(0 0 5px #185ABD);
+  font-weight: 600;
+}
+
+@keyframes animate {
+  0%, 10%, 100% { 
+    width: 0;
+  }
+  70%, 90% {
+    width: 100%;
+  }
+}

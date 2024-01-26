@@ -1,1 +1,1 @@
-<object loading="lazy" class="emoji-object" {{ with .Get "id" }}id="{{ . }}"{{ end }} {{ with .Get "data" }}data="https://api.hesiy.cn/api/emoji?emoji={{ . }}"{{ end }} type="image/svg+xml">{{ .Inner }}</object>
+<img loading="lazy" class="emoji-object" {{ with .Get "id" }}id="{{ . }}"{{ end }} {{ with .Get "data" }}src="https://api.hesiy.cn/api/emoji?emoji={{ . }}"{{ end }} type="image/svg+xml">{{ .Inner }}</img>
