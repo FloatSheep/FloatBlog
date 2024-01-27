@@ -14,6 +14,7 @@ xml: false
 > 一开始的满心期待，到后来的摆烂躺平，中间往往只有一瞬
 
 ## 要求
+
 * 网站原创内容占多数
 
 * 内地以外地区访问良好
@@ -29,9 +30,10 @@ xml: false
 ```yaml
 - nickname: FloatSheep
   url: https://blog.hesiy.cn
-  avatar: https://blog.hesiy.cn/avatar.webp
+  avatar: https://minio.yurl.eu.org/pumpkin/avatar.webp
   description: On the other side of obstacles
 ```
+
 在评论区用 `YAML` 格式留下你的信息即可
 
 ```yaml
@@ -42,6 +44,5 @@ xml: false
 ```
 
 评论加载较慢，请耐心等待~
-
 
 [^隐私入侵型统计服务]:即包含**用户画像**、**用户分群**、**转化归因**、**一键投放**等功能的统计服务
