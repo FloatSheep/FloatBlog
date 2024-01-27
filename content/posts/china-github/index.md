@@ -5,7 +5,8 @@ tags: [github, gfw]
 showSummary: true
 summary: GitHub 的多种开(访)车(问)方式
 categories: [github]
-cover: https://rmt.ladydaily.com/fetch/hajeekn/storage/幻灯片1.PNG
+cover: cover.svg
+thumbnail: cover.svg
 slug: china-github
 date: 2022-05-14 7:53:12
 copyright_author_href: https://blog.slqwq.cn

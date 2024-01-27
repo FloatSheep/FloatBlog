@@ -5,7 +5,8 @@ tags: [picgo]
 summary: 图床盘点
 showSummary: true
 categories: [picgo]
-cover: https://i0.hdslb.com/bfs/album/4b212e3692523c9baa9bfb4415b89c68fff44557.png
+cover: cover.svg
+thumbnail: cover.svg
 slug: pictures-bed
 thumbnail: cover.svg
 date: 2022-05-15 11:17:12
