@@ -46,6 +46,16 @@ xml: false
 
 还是很感谢这位大佬的（
 
+## Where is resources of the blog from?
+
+博客的资源来源于网络（或个人），侵权请联系 [admin@hesiy.cn][2]
+
+本博客引用的部分网络资源来源（或镜像站），如下：
+
+- api.hesiy.cn
+- cdn.hesiy.cn
+- registry.npmmirror.com
+
 ## Copyright
 
 除特别说明外，本站所有内容均在 **[署名-非商业性使用-相同方式共享 4.0 国际](/copyright/)** (CC BY-NC-SA 4.0) 协议下共享，在遵守该协议的许可说明下，您可以自由地进行衍生和再创作。
@@ -53,3 +63,4 @@ xml: false
 [^1]: 小括号内为用途，方括号内为代替名
 
 [1]: <https://blog.dejavu.moe>
+[2]: <mailto:admin@hesiy.cn>
