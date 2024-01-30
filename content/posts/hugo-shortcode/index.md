@@ -97,3 +97,5 @@ summary: 什么是 Shortcodes & 如何编写自己的 Shortcodes
 {{< alert >}}
 **警告!** 如果你想要自定义 **Shortcodes** 的样式，你应该在另外的 **CSS** 文件中书写样式，你不应该在 **Shortcodes** 文件中直接使用  `<style />` 语法，也不应该在 **Shortcodes** 中引入样式，那将会浪费不必要的流量
 {{< /alert >}}
+
+

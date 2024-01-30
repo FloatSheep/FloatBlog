@@ -8,3 +8,4 @@ xml: false
 「所有文章」加起来约 {{< wordCount "posts" >}}
 
 [1]: /posts/index.xml
+

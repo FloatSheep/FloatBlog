@@ -26,11 +26,11 @@ author: Hajeekn
 
 PicGO 搜索 bilibili
 
-![img](https://i0.hdslb.com/bfs/album/cf1ae1497dece72e055eb53e76ab22cce8edbd7f.png)
+![img](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/cf1ae1497dece72e055eb53e76ab22cce8edbd7f.png)
 
 接着配置 Bilibili 图床
 
-![image-20220515095616065](https://i0.hdslb.com/bfs/album/cdfe3d7b91a9e90d70b5b98f73cc210c3e3818af.png)
+![image-20220515095616065](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/cdfe3d7b91a9e90d70b5b98f73cc210c3e3818af.png)
 
 SESSDATA 可以登录哔哩哔哩后查看
 
@@ -38,17 +38,17 @@ SESSDATA 可以登录哔哩哔哩后查看
 
 定位到应用  -> COOKIE
 
-![image-20220515095718144](https://i0.hdslb.com/bfs/album/b9641807e390e3cb6400dfde505d355fed04efe7.png)
+![image-20220515095718144](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/b9641807e390e3cb6400dfde505d355fed04efe7.png)
 
 选择 `https://www.bilibili.com`
 
-![image-20220515095812119](https://i0.hdslb.com/bfs/album/414a2c8e5ac3a5468149e9ba127d0ee4a13567fc.png)
+![image-20220515095812119](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/414a2c8e5ac3a5468149e9ba127d0ee4a13567fc.png)
 
 在名称内找到 SESSDATA
 
 点击它
 
-![image-20220515100404765](https://i0.hdslb.com/bfs/album/acf7ca1d8eb1dd61ad279ba9d0d261ea46e67052.png)
+![image-20220515100404765](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/acf7ca1d8eb1dd61ad279ba9d0d261ea46e67052.png)
 
 然后在 Cookie Value 中复制值,粘贴进去
 
@@ -86,27 +86,80 @@ SESSDATA 可以登录哔哩哔哩后查看
 - s1.hdslb.com
 - s3.hdslb.com
 
-腾讯 CDN 路线:
-
-- 13.hdslb.com
-
 未知 CDN 路线:
 
 - s2.hdslb.com
 
-> Bilibili 图床有防盗链,如果你要在你自己的网站中用 Bilibili 图床,得先配置头
+> ~~Bilibili 图床有防盗链,如果你要在你自己的网站中用 Bilibili 图床,得先配置头~~
 
 ```html
 <meta name="referrer" content="no-referrer">
 ```
 
-> 如果你用的 Hexo - Butterfly 则可以在配置文件中这样配置
+> ~~如果你用的 Hexo - Butterfly 则可以在配置文件中这样配置~~
 
 ```yaml
 inject:
   head:
       - <meta name="referrer" content="no-referrer">
 ```
+
+2024 年 1 月 30 日更新：叔叔已经设置了禁止空头，目前哔哩哔哩图床使用有一些门槛了，如果你和我一样部分文章用了叔叔做图床，可以写一个跨域脚本
+
+```javascript
+import https from 'https';
+
+export default async function handler(request, response) {
+  const { fetch: imageUrl } = request.query;
+
+  if (!imageUrl) {
+    return response.status(400).json({ error: 'No image URL provided' });
+  }
+
+  const options = {
+    headers: {
+      'Referer': 'https://www.bilibili.com'
+    }
+  };
+
+  try {
+    https.get(imageUrl, options, (res) => {
+      if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
+        return response.status(res.statusCode).json({ error: 'Failed to fetch image' });
+      }
+
+      response.setHeader('Content-Type', res.headers['content-type']);
+
+      res.pipe(response);
+    }).on('error', (error) => {
+      response.status(500).json({ error: error.message });
+    });
+  } catch (error) {
+    response.status(500).json({ error: error.message });
+  }
+}
+```
+
+接着你可以写一个 Powershell 脚本进行替换
+
+```powershell
+$rootPath = "./"  # 替换成你想要搜索的目录
+$matchPattern = 'https://i0\.hdslb\.com/'  # 来匹配的URL
+$replaceWith = 'https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/'  # 替换为新的URL
+
+$markdownFiles = Get-ChildItem -Path $rootPath -Recurse -Filter *.md
+
+foreach ($file in $markdownFiles) {
+    $content = Get-Content -Path $file.FullName -Raw
+    $newContent = $content -replace $matchPattern, $replaceWith
+
+    Set-Content -Path $file.FullName -Value $newContent
+}
+
+Write-Host "所有Markdown文件中的URL已经更新完成。"
+```
+
+> 注意：如果你使用了早期的哔哩哔哩图床或者自定义了 CDN，你也要跟着进行修改
 
 #### 配套食用
 
@@ -159,7 +212,7 @@ fastly.jsdleivr.net
 
 #### PicGo 插件安装
 
-![image-20220515102843681](https://i0.hdslb.com/bfs/album/a331f344fec5938cf88bb31b96eb617ca7aa912a.png)
+![image-20220515102843681](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/a331f344fec5938cf88bb31b96eb617ca7aa912a.png)
 
 搜索 s3 并安装
 
@@ -171,7 +224,7 @@ https://4everland.org/
 
 我用的 MetaMask
 
-注册之后创建一个桶![image-20220515103035770](https://i0.hdslb.com/bfs/album/18d86351cd8e59f2952403b87e6148a011a0c8b7.png)
+注册之后创建一个桶![image-20220515103035770](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/18d86351cd8e59f2952403b87e6148a011a0c8b7.png)
 
 #### 生成 API TOKEN
 
@@ -183,7 +236,7 @@ https://4everland.org/
 
 点击 Generate 即可
 
-![image-20220515103143196](https://i0.hdslb.com/bfs/album/6a6280b7d227e71f85fe3ac5d6c723a1624b10b2.png)
+![image-20220515103143196](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/6a6280b7d227e71f85fe3ac5d6c723a1624b10b2.png)
 
 > 本文章的 Key 在发布之前就删掉了,不要想着搞坏事
 
@@ -191,7 +244,7 @@ https://4everland.org/
 
 转到 Amazon S3
 
-![image-20220515103304436](https://i0.hdslb.com/bfs/album/0c17cef3800acd7e24cb513332b581b7e533d734.png)
+![image-20220515103304436](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/0c17cef3800acd7e24cb513332b581b7e533d734.png)
 
 ID 和 密钥粘贴进去
 
@@ -203,7 +256,7 @@ ID 和 密钥粘贴进去
 
 最后记得把这两个选项打开
 
-![image-20220515103434098](https://i0.hdslb.com/bfs/album/2cfae6b3b35c40363da4d245be35ddbe689c6a48.png)
+![image-20220515103434098](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/2cfae6b3b35c40363da4d245be35ddbe689c6a48.png)
 
 ## IPFSUPLOAD(真正意义上的 IPFS 图床)
 
@@ -211,7 +264,7 @@ ID 和 密钥粘贴进去
 
 等他启动后先看端口
 
-![image-20220515103737939](https://i0.hdslb.com/bfs/album/4f632ddca72f5fd73c04b363a3bcc71c0ed32a46.png)
+![image-20220515103737939](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/4f632ddca72f5fd73c04b363a3bcc71c0ed32a46.png)
 
 图中圈着的就是端口,然后去浏览器访问一下看看正不正常
 
@@ -223,11 +276,11 @@ ID 和 密钥粘贴进去
 
 PicGo 安装一个 web-uploader
 
-![image-20220515104103681](https://i0.hdslb.com/bfs/album/900e4ad2f69eb49de3c2cc768a570d0a4d64e341.png)
+![image-20220515104103681](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/900e4ad2f69eb49de3c2cc768a570d0a4d64e341.png)
 
 然后配置如图
 
-![image-20220515104559575](https://i0.hdslb.com/bfs/album/f3964d51aa4ec7628e29561b436244322a9dc43d.png)
+![image-20220515104559575](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/f3964d51aa4ec7628e29561b436244322a9dc43d.png)
 
 IPFS网关我是用的我自己的,所以打了马赛克,你们可以自己先用 workers 反代一次,然后再用 CDN 过墙
 
@@ -255,7 +308,7 @@ PS :我没有反代 IPFS 网关
 
 有的可以用
 
-![image-20220515104734675](https://i0.hdslb.com/bfs/album/14b08dccb38ff79f6935a6a764a65b20773bf724.png)
+![image-20220515104734675](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/14b08dccb38ff79f6935a6a764a65b20773bf724.png)
 
 ## BACKBLAZE B2 + Cloudflare
 
@@ -267,7 +320,7 @@ PS :我没有反代 IPFS 网关
 
 这是超出10G的价格
 
-![](https://i0.hdslb.com/bfs/album/6389ccc4522227dd936a8eedfeb6988ecd39616c.jpg)
+![](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/6389ccc4522227dd936a8eedfeb6988ecd39616c.jpg)
 
 注册方法 ChenYFan 大佬已经写过了,与其再写一篇问文章,不如直接用他的~~(其实就是懒)~~
 
@@ -324,3 +377,4 @@ https://blog.cyfan.top/p/ce240368.html
 我总结了 7 个免费图床,其中 DogeDoge 图床需要申请
 
 如果细数的话,共有 8 个免费图床(每个云存储单独算一个)
+

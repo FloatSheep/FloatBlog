@@ -28,13 +28,13 @@ https://github.com/LSPosed/MagiskOnWSA
 
 这是 LSPosed 官方发布的 MagiskOnWSA 的 Actions
 
-![image-20220625191348873](https://i0.hdslb.com/bfs/album/8c26df95d1d55da03b94d52f88bf562950e1f595.png)
+![image-20220625191348873](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/8c26df95d1d55da03b94d52f88bf562950e1f595.png)
 
 进入后 Fork 仓库
 
 Fork 完后进入 Actions
 
-![image-20220625191437234](https://i0.hdslb.com/bfs/album/7ab66f2448d02ce0449196aab7df7ac7ce059d9d.png)
+![image-20220625191437234](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/7ab66f2448d02ce0449196aab7df7ac7ce059d9d.png)
 
 按钮点上
 
@@ -44,7 +44,7 @@ Fork 完后进入 Actions
 
 要这样配置
 
-![image-20220625191535713](https://i0.hdslb.com/bfs/album/c99cdec0fadaaad474c5b162751a10b98cea695b.png)
+![image-20220625191535713](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/c99cdec0fadaaad474c5b162751a10b98cea695b.png)
 
 如果你要更改也是可以的
 
@@ -62,7 +62,7 @@ Fork 完后进入 Actions
 
 选好之后点击 `Run Workflow`
 
-运行好后进入 `Artifacts` 下载构建产物![image-20220625192106452](https://i0.hdslb.com/bfs/album/1d4f388eeb36e1fa822be14f537f18709802f851.png)
+运行好后进入 `Artifacts` 下载构建产物![image-20220625192106452](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/1d4f388eeb36e1fa822be14f537f18709802f851.png)
 
 这里的 1.95 GB 是源文件大小,用我的配置下载下来差不多是 870 MB 左右
 
@@ -70,7 +70,7 @@ Fork 完后进入 Actions
 
 运行 `Install.ps1`
 
-![image-20220625192200710](https://i0.hdslb.com/bfs/album/e160d68152d371e91a7e611860d5cca8f60637e2.png)
+![image-20220625192200710](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/e160d68152d371e91a7e611860d5cca8f60637e2.png)
 
 等到部署完成
 
@@ -82,7 +82,7 @@ Fork 完后进入 Actions
 
 先配置图形
 
-![image-20220625192321117](https://i0.hdslb.com/bfs/album/9645173950d48ab71b861ef522e9ca9fe59a9e38.png)
+![image-20220625192321117](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/9645173950d48ab71b861ef522e9ca9fe59a9e38.png)
 
 > ⚠ Tips: Android 子系统目前 GPU 利用还不是很好,不要想着玩游戏
 
@@ -90,7 +90,7 @@ Fork 完后进入 Actions
 
 打开开发人员模式
 
-![image-20220625192428910](https://i0.hdslb.com/bfs/album/2549ea27822245bdd9bbd88488f932bc8533d7f8.png)
+![image-20220625192428910](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/2549ea27822245bdd9bbd88488f932bc8533d7f8.png)
 
 ## 安装 ADB
 
@@ -100,7 +100,7 @@ Fork 完后进入 Actions
 
 进入高级系统设置 -> 环境变量 -> Path
 
-把 ADB 目录写进去![image-20220625192621523](https://i0.hdslb.com/bfs/album/2f75f209084d73027936dcc61ed56d31707ea627.png)
+把 ADB 目录写进去![image-20220625192621523](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/2f75f209084d73027936dcc61ed56d31707ea627.png)
 
 ## 配置 Magisk
 
@@ -110,13 +110,13 @@ Fork 完后进入 Actions
 
 把`Systemless hosts`和`Zygisk`打开
 
-![image-20220625192725927](https://i0.hdslb.com/bfs/album/9cdc91f8ea1f8b5418586015adc92f0a0338d072.png)
+![image-20220625192725927](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/9cdc91f8ea1f8b5418586015adc92f0a0338d072.png)
 
 重启子系统
 
 如果主页这样显示就 OK 了
 
-![image-20220625192815258](https://i0.hdslb.com/bfs/album/0703670b18b07223bbe9425f00613183aaf51e4d.png)
+![image-20220625192815258](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/0703670b18b07223bbe9425f00613183aaf51e4d.png)
 
 ## 安装 LSPosed 
 
@@ -146,13 +146,13 @@ adb push 文件位置 /sdcard/
 
 从本地安装
 
-![image-20220625193313900](https://i0.hdslb.com/bfs/album/b19da1d0ac94e23e6c582bbd3fbe7a86f7d8c218.png)
+![image-20220625193313900](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/b19da1d0ac94e23e6c582bbd3fbe7a86f7d8c218.png)
 
 选择 Pixel 5
 
 点击刚上传的 LSPosed
 
-![image-20220625193351560](https://i0.hdslb.com/bfs/album/c2ecbc06751b69fff99b757e7b968496f389a0ec.png)
+![image-20220625193351560](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/c2ecbc06751b69fff99b757e7b968496f389a0ec.png)
 
 等待安装完成即可
 
@@ -182,7 +182,7 @@ adb install <文件位置>
 
 右键长按并解压
 
-![image-20220625193900539](https://i0.hdslb.com/bfs/album/d075d9b1d29ffcb6e7cb4972aeb1233337e7a2bb.png)
+![image-20220625193900539](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/d075d9b1d29ffcb6e7cb4972aeb1233337e7a2bb.png)
 
 进入解压后的文件夹,找到 `Daemon.apk`
 
@@ -194,7 +194,7 @@ adb install <文件位置>
 
 安装它即可
 
-![image-20220625194038174](https://i0.hdslb.com/bfs/album/e29760d8ef2c7fa2f6b3160f20b3c7b97d559cc0.png)
+![image-20220625194038174](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/e29760d8ef2c7fa2f6b3160f20b3c7b97d559cc0.png)
 
 这样就安装完成了
 
@@ -207,3 +207,5 @@ adb install <文件位置>
 进入 MT管理器,找到上传的的模块(APK),安装他
 
 然后进入 LSPosed Manager 启用即可
+
+
