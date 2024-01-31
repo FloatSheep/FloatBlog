@@ -1,0 +1,43 @@
+name: CyanBlog CI
+on:
+  - push
+jobs:
+  buildstatic:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Setup node
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+
+      - name: Cache node modules
+        uses: actions/cache@v1
+        with:
+          path: ~/.npm
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: latest
+
+      - name: Generate Hugo
+        run: >
+          hugo
+
+      - name: NPM Publish Pre Set
+        run: >
+          node ./prep/main.js
+
+      - name: NPM Publish
+        run: >
+          npm config set _authToken=${{ secrets.NPM_T }}
+          cd ./public
+          npm publish --access=public
+      - name: Refresh cache
+        run: >
+          npm install cnpm --global
+          cnpm sync fsl-blog
