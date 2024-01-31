@@ -15,14 +15,23 @@ self.addEventListener("activate", (event) => {
 self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
+  // 检查请求的 Accept 头部是否为 EventSource 的 MIME 类型
+  const isEventSource = event.request.headers.get('Accept') === 'text/event-stream';
+
+  // 不拦截 EventSource 请求
+  if (isEventSource) {
+    // 如果是 EventSource 请求则不拦截，让浏览器直接处理
+    return;
+  }
+
   // 判断当前是否处于本地开发模式或者请求的域名是否为博客域名
   const shouldIntercept = localMode || url.hostname === blogDomain;
 
   // 判断请求是否需要通过NPM镜像获取且不是对Service Worker本身的请求
   const shouldHandleFetch =
     shouldIntercept &&
-    event.request.url.startsWith(self.location.origin) &&
-    !event.request.url.includes("sw.js");
+    url.origin === self.location.origin &&
+    !url.pathname.includes("sw.js");
 
   if (shouldHandleFetch) {
     let relPath = url.pathname; // 获取相对路径
@@ -47,16 +56,14 @@ self.addEventListener("fetch", (event) => {
           return fetch(event.request); // 如果失败，则回退到原始请求
         })
     );
-  } else {
-    // 对于不符合条件的请求，保持原样不做处理，实现透明代理
-    return fetch(event.request);
   }
+  // 不需要else，因为我们不打算使用event.respondWith()
 });
 
 // 处理CORS的函数
 function corsResponse(response) {
   const headers = new Headers(response.headers);
-  headers.set("Access-Control-Allow-Origin", "*");
+  headers.set("Access-Control-Allow-Origin", "*"); // 在生产环境中，这个值应该设为特定的来源而非通配符 "*"
   headers.set("Access-Control-Allow-Methods", "GET, HEAD, POST, OPTIONS");
   headers.set("Access-Control-Allow-Headers", "Content-Type");
 
