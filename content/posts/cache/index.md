@@ -7,6 +7,7 @@ thumbnail: cover.svg
 draft: false
 categories: "Blog"
 tags: ["JavaScript", "Cache"]
+gemini: true
 showSummary: true
 summary: 通过 JavaScript 缓存自定义字体
 ---
@@ -153,5 +154,4 @@ if (isFontCached()) {
 * [JS 缓存三种方法](https://blog.csdn.net/qq_41241504/article/details/109266650)
 
 * [ChatGPT](https://openai.com/chatgpt)
-
 

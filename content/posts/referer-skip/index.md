@@ -7,6 +7,7 @@ thumbnail: cover.svg
 draft: false
 categories: "hello"
 tags: ["hello world"]
+gemini: true
 showSummary: true
 summary: 用一种很巧妙的方法绕过 Referer 限制
 ---

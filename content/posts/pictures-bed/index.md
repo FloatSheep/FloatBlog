@@ -8,6 +8,7 @@ categories: [picgo]
 cover: cover.svg
 thumbnail: cover.svg
 slug: pictures-bed
+gemini: true
 thumbnail: cover.svg
 date: 2022-05-15 11:17:12
 copyright_author_href: https://blog.slqwq.cn

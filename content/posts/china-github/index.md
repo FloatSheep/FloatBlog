@@ -8,6 +8,7 @@ categories: [github]
 cover: cover.svg
 thumbnail: cover.svg
 slug: china-github
+gemini: true
 date: 2022-05-14 7:53:12
 copyright_author_href: https://blog.slqwq.cn
 author: Hajeekn
@@ -66,5 +67,4 @@ sudo git config --global https.proxy 'socks5://127.0.0.1:8868'
 加速 npm 还是 Dev-Sidecar 和 local-npm 好用一点
 
 [1]: https://cloud.tencent.com/developer/support-plan?invite_code=3gll8aqhc2kgg
-
 

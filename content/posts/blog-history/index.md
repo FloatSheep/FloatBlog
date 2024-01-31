@@ -7,6 +7,7 @@ thumbnail: cover.svg
 draft: false
 categories: "Deploy"
 tags: ["Blog", "History"]
+gemini: true
 showSummary: true
 summary: 告别以前，迎接未来
 ---

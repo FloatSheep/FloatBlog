@@ -8,6 +8,7 @@ categories:
   - Magisk
 slug: android-windows-subsystem
 showSummary: true
+gemini: true
 thumbnail: cover.svg
 cover: cover.svg
 date: 2022-06-25 19:10:05
@@ -207,5 +208,4 @@ adb install <文件位置>
 进入 MT管理器,找到上传的的模块(APK),安装他
 
 然后进入 LSPosed Manager 启用即可
-
 

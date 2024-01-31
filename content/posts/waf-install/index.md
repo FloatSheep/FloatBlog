@@ -7,6 +7,7 @@ thumbnail: cover.svg
 draft: false
 categories: "waf"
 tags: ["waf"]
+gemini: true
 showSummary: true
 summary: 记录长亭雷池 WAF 的安装方法，以及更改 Nginx 配置
 ---
@@ -73,5 +74,4 @@ docker exec safeline-tengine nginx -s reload
 ```
 
 [1]: https://waf-ce.chaitin.cn/docs/guide/install
-
 

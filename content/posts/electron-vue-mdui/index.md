@@ -8,6 +8,7 @@ categories:
 slug: electron-vue-mdui
 date: 2022-07-22 16:23:03
 thumbnail: cover.svg
+gemini: true
 summary: 将 Electron 集成到 Vue 项目中的指南
 showSummary: true
 ---
@@ -182,5 +183,4 @@ $ yarn electron:build
 ```
 
 > 请注意,在打包过程中需要下载一些文件,但由于天朝网络特性,可能会 timeout,请自行替换源或使用科学上网
-
 
