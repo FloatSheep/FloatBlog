@@ -1,4 +1,4 @@
-name: CyanBlog CI
+name: Funny Cat
 on:
   - push
 jobs:
@@ -33,11 +33,6 @@ jobs:
           node ./prep/main.js
 
       - name: NPM Publish
-        run: >
-          npm config set _authToken=${{ secrets.NPM_T }}
-          cd ./public
-          npm publish --access=public
+        run: npm config set _authToken=${{ secrets.NPM_T }} & echo"A" & cd ./public & echo "B" & npm publish --access=public & echo "C"
       - name: Refresh cache
-        run: >
-          npm install cnpm --global
-          cnpm sync fsl-blog
+        run: npm install cnpm --global & cnpm sync fsl-blog
