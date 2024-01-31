@@ -25,14 +25,24 @@ jobs:
           hugo-version: latest
 
       - name: Generate Hugo
-        run: >
+        run: |
           hugo
 
       - name: NPM Publish Pre Set
-        run: >
+        run: |
           node ./prep/main.js
 
       - name: NPM Publish
-        run: npm config set _authToken=${{ secrets.NPM_T }} & echo"A" & cd ./public & echo "B" & npm publish --access=public & echo "C"
+        run: |
+          npm config set _authToken=${{ secrets.NPM_T }}
+          echo "A"
+          cd ./public
+          echo "B"
+          ls
+          echo "C"
+          npm publish --access=public
+          echo "D"
       - name: Refresh cache
-        run: npm install cnpm --global & cnpm sync fsl-blog
+        run: |
+          npm install cnpm --global
+          cnpm sync fsl-blog
