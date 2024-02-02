@@ -30,7 +30,7 @@ xml: false
 ```yaml
 - nickname: FloatSheep
   url: https://blog.hesiy.cn
-  avatar: https://minio.yurl.eu.org/pumpkin/avatar.webp
+  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.4/files/avatar.webp
   description: On the other side of obstacles
 ```
 
@@ -46,5 +46,3 @@ xml: false
 评论加载较慢，请耐心等待~
 
 [^隐私入侵型统计服务]:即包含**用户画像**、**用户分群**、**转化归因**、**一键投放**等功能的统计服务
-
-
