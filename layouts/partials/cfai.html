@@ -1,0 +1,161 @@
+<div class="post-ai" onclick="cfWKAI()">
+  <img alt="Static Badge" src="/cfai.svg" />
+</div>
+<style>
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .post-ai-result svg {
+    animation: spin 1s infinite linear;
+  }
+  .post-ai-result {
+    box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
+    background-color: var(--light-header);
+    border-radius: 6px;
+    padding: 0.5rem 1rem;
+    min-height: 3rem;
+    max-width: 41rem;
+  }
+  .post-ai {
+    margin-bottom: 1rem;
+  }
+  .noclick {
+    pointer-events: none;
+  }
+</style>
+<script>
+  let postAI = document.querySelector(".post-ai");
+  let postTile = document.querySelector("#title").textContent;
+  let cfWKUrl = "https://cl.yurl.eu.org";
+  window.rk = false;
+  async function cfWKAI() {
+    postAI.insertAdjacentHTML(
+      "afterend",
+      '<div class="post-ai-result"><div class="loading">加载中...</div></div>'
+    );
+    if (window.rk) {
+      let rke = document.querySelector(".post-ai-result");
+      rke.remove();
+      postAI.classList.add("noclick");
+      window.rk = true;
+      try {
+        let postAIResult = document.querySelector(".post-ai-result");
+        postAIResult.textContent = "加载中...";
+        let inputa = document.querySelector("#posts-content").textContent;
+        let inputaHanzi = inputa
+          .replace(/\n/g, "")
+          .replace(/[ ]+/g, " ")
+          .replace(/<pre>[\s\S]*?<\/pre>/g, "")
+          .substring(0, 1800);
+        let toAI = `《${postTile}》，具体内容：${inputaHanzi}`;
+        let encodedToAI = encodeURIComponent(toAI); // 使用encodeURIComponent对字符串进行编码
+        let fetchUrl = `${cfWKUrl}/?q=${encodedToAI}`;
+        const source = new EventSource(fetchUrl);
+        let accumulatedResponse = ""; // 用于累积响应的变量
+        let firstChunkReceived = false; // 标识是否已经接收到第一段流数据
+
+        source.onmessage = (event) => {
+          if (!firstChunkReceived) {
+            // 一旦收到第一段数据，清除 '.post-ai-result' 中的“加载中...”
+            postAIResult.textContent = "";
+            firstChunkReceived = true;
+          }
+
+          if (event.data === "[DONE]") {
+            // 处理完成前最后一次过滤
+            postAIResult.textContent += accumulatedResponse.replace(
+              /(。)\1+/g,
+              "$1"
+            );
+            accumulatedResponse = ""; // 重置累积响应
+            source.close();
+            postAI.classList.remove("noclick");
+            return;
+          }
+
+          try {
+            const data = JSON.parse(event.data);
+            accumulatedResponse += data.response; // 累积新的响应
+
+            // 如果现有响应不是以句号结尾，则对累积响应进行过滤，并更新textContent
+            if (!accumulatedResponse.endsWith("。")) {
+              postAIResult.textContent += accumulatedResponse.replace(
+                /(。)\1+/g,
+                "$1"
+              );
+              accumulatedResponse = ""; // 清空累积响应以便下一次消息
+            }
+          } catch (e) {
+            console.error("解析数据时发生错误:", e);
+          }
+        };
+      } catch (error) {
+        postAI.classList.remove("noclick");
+        console.log(error);
+      }
+    } else {
+      window.rk = true;
+      postAI.classList.add("noclick");
+      try {
+        let postAIResult = document.querySelector(".post-ai-result");
+        postAIResult.textContent = "加载中";
+        let inputa = document.querySelector("#posts-content").textContent;
+        let inputaHanzi = inputa
+          .replace(/\n/g, "")
+          .replace(/[ ]+/g, " ")
+          .replace(/<pre>[\s\S]*?<\/pre>/g, "")
+          .substring(0, 1800);
+        let toAI = `请你帮我对这篇文章做一个摘要，简述一下文章内容，标题：《${postTile}》，具体内容：${inputaHanzi}`;
+        let encodedToAI = encodeURIComponent(toAI); // 使用encodeURIComponent对字符串进行编码
+        let fetchUrl = `${cfWKUrl}/?q="${encodedToAI}"`;
+        const source = new EventSource(fetchUrl);
+        let accumulatedResponse = ""; // 用于累积响应的变量
+        let firstChunkReceived = false; // 标识是否已经接收到第一段流数据
+
+        source.onmessage = (event) => {
+          if (!firstChunkReceived) {
+            // 一旦收到第一段数据，清除 '.post-ai-result' 中的“加载中...”
+            postAIResult.textContent = "";
+            firstChunkReceived = true;
+          }
+
+          if (event.data === "[DONE]") {
+            // 处理完成前最后一次过滤
+            postAIResult.textContent += accumulatedResponse.replace(
+              /(。)\1+/g,
+              "$1"
+            );
+            accumulatedResponse = ""; // 重置累积响应
+            source.close();
+            postAI.classList.remove("noclick");
+            return;
+          }
+
+          try {
+            const data = JSON.parse(event.data);
+            accumulatedResponse += data.response; // 累积新的响应
+
+            // 如果现有响应不是以句号结尾，则对累积响应进行过滤，并更新textContent
+            if (!accumulatedResponse.endsWith("。")) {
+              postAIResult.textContent += accumulatedResponse.replace(
+                /(。)\1+/g,
+                "$1"
+              );
+              accumulatedResponse = ""; // 清空累积响应以便下一次消息
+            }
+          } catch (e) {
+            console.error("解析数据时发生错误:", e);
+          }
+        };
+      } catch (error) {
+        postAI.classList.remove("noclick");
+        console.log(error);
+      }
+    }
+  }
+</script>

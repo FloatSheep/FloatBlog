@@ -1,5 +1,5 @@
-<div class="post-ai" onclick="cfWKAI()">
-  <img alt="Static Badge" src="/cfai.svg" />
+<div class="post-ai" onclick="geminiAI()">
+  <img alt="Static Badge" src="/gemini.svg" />
 </div>
 <style>
   @keyframes spin {
@@ -24,136 +24,74 @@
   .post-ai {
     margin-bottom: 1rem;
   }
-  .noclick {
-    pointer-events: none;
-  }
 </style>
 <script>
   let postAI = document.querySelector(".post-ai");
-  let postTile = document.querySelector("#title").textContent;
-  let cfWKUrl = "https://cl.yurl.eu.org/";
-  window.rk = false;
-  async function cfWKAI() {
-    postAI.insertAdjacentHTML(
-      "afterend",
-      '<div class="post-ai-result"><div class="loading">加载中...</div></div>'
-    );
-    if (window.rk) {
-      let rke = document.querySelector(".post-ai-result");
-      rke.remove();
-      postAI.classList.add("noclick");
-      window.rk = true;
-      try {
-        let postAIResult = document.querySelector(".post-ai-result");
-        postAIResult.textContent = "加载中...";
-        let input = document.querySelector("#posts-content").textContent;
-        let inputHanzi = input
-          .replace(/\n/g, "")
-          .replace(/[ ]+/g, " ")
-          .replace(/<pre>[\s\S]*?<\/pre>/g, "")
-          .substring(0, 1800);
-        let toAI = `《${postTile}》，具体内容：${inputHanzi}`;
-        let fetchUrl = `${cfWKUrl}/?q=${toAI}`;
-        const source = new EventSource(fetchUrl);
-        let accumulatedResponse = ""; // 用于累积响应的变量
-        let firstChunkReceived = false; // 标识是否已经接收到第一段流数据
+  let postTile = document.getElementById("title").innerHTML;
 
-        source.onmessage = (event) => {
-          if (!firstChunkReceived) {
-            // 一旦收到第一段数据，清除 '.post-ai-result' 中的“加载中...”
-            postAIResult.textContent = "";
-            firstChunkReceived = true;
-          }
-
-          if (event.data === "[DONE]") {
-            // 处理完成前最后一次过滤
-            postAIResult.textContent += accumulatedResponse.replace(
-              /(。)\1+/g,
-              "$1"
-            );
-            accumulatedResponse = ""; // 重置累积响应
-            source.close();
-            postAI.classList.remove("noclick");
-            return;
-          }
-
-          try {
-            const data = JSON.parse(event.data);
-            accumulatedResponse += data.response; // 累积新的响应
-
-            // 如果现有响应不是以句号结尾，则对累积响应进行过滤，并更新textContent
-            if (!accumulatedResponse.endsWith("。")) {
-              postAIResult.textContent += accumulatedResponse.replace(
-                /(。)\1+/g,
-                "$1"
-              );
-              accumulatedResponse = ""; // 清空累积响应以便下一次消息
-            }
-          } catch (e) {
-            console.error("解析数据时发生错误:", e);
-          }
-        };
-      } catch (error) {
-        postAI.classList.remove("noclick");
-        console.log(error);
-      }
+  async function geminiAI() {
+    // 尝试获取现有的摘要或错误信息元素并移除
+    const existingResult = document.querySelector(".post-ai-result");
+    if (existingResult) {
+      existingResult.remove();
     } else {
-      window.rk = true;
-      postAI.classList.add("noclick");
-      try {
-        let postAIResult = document.querySelector(".post-ai-result");
-        postAIResult.textContent = "加载中";
-        let input = document.querySelector("#posts-content").textContent;
-        let inputHanzi = input
-          .replace(/\n/g, "")
-          .replace(/[ ]+/g, " ")
-          .replace(/<pre>[\s\S]*?<\/pre>/g, "")
-          .substring(0, 1800);
-        let toAI = `《${postTile}》，具体内容：${inputHanzi}`;
-        let fetchUrl = `${cfWKUrl}/?q=${toAI}`;
-        const source = new EventSource(fetchUrl);
-        let accumulatedResponse = ""; // 用于累积响应的变量
-        let firstChunkReceived = false; // 标识是否已经接收到第一段流数据
+      postAI.insertAdjacentHTML(
+        "afterend",
+        '<div class="post-ai-result"><svg xmlns="http://www.w3.org/2000/svg" width="1.5rem" height="1.5rem" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 1 1-6.219-8.56"/></svg></div>'
+      );
+    }
+    let GeminiFetch = "https://g.yurl.eu.org/v1/chat/completions";
 
-        source.onmessage = (event) => {
-          if (!firstChunkReceived) {
-            // 一旦收到第一段数据，清除 '.post-ai-result' 中的“加载中...”
-            postAIResult.textContent = "";
-            firstChunkReceived = true;
+    try {
+      let postAIResult = document.querySelector(".post-ai-result");
+      let input = document.getElementById("posts-content").innerHTML;
+      let inputHanzi = input
+        .replace(/\n/g, "")
+        .replace(/[ ]+/g, " ")
+        .replace(/<pre>[\s\S]*?<\/pre>/g, "")
+        .substring(0, 30000);
+      let toAI = `"文章标题：${postTile}，具体内容：${inputHanzi}"`;
+      const res = await fetch(GeminiFetch, {
+        headers: {
+          "Content-Type": "application/json",
+        },
+        method: "POST",
+        body: JSON.stringify({
+          model: "gemini-pro",
+          messages: [
+            {
+              role: "system",
+              content: `You are a highly skilled AI trained in language comprehension and summarization. I want you to read the text separated by triple quotes and summarize it into a concise abstract paragraph. The aim is to retain the most important points and provide a coherent and readable summary that can help one understand the main points of discussion without having to read the entire text. Avoid unnecessary details or tangent points.
+Just give me output and nothing else. Do not enclose responses in quotation marks. Answer in Chinese. You must read the whole article and make the most concise summary possible, which summarizes the content well.You should output the content in its entirety, not leave some behind, and when you are complete, you should issue the DONE command. `,
+            },
+            { role: "user", content: toAI },
+          ],
+          temperature: 0.7,
+          stream: true,
+        }),
+      });
+      const reader = res.body.getReader();
+      while (true) {
+        const { value, done } = await reader.read();
+        if (done) {
+          break;
+        }
+        const text = new TextDecoder().decode(value);
+        const match = text.match(/DONE/);
+        if (!match) {
+          const textJson = JSON.parse(text.substring(5));
+          const resData = textJson.choices[0].delta.content;
+          if (resData.length > 0) {
+            postAIResult.textContent += resData;
           }
-
-          if (event.data === "[DONE]") {
-            // 处理完成前最后一次过滤
-            postAIResult.textContent += accumulatedResponse.replace(
-              /(。)\1+/g,
-              "$1"
-            );
-            accumulatedResponse = ""; // 重置累积响应
-            source.close();
-            postAI.classList.remove("noclick");
-            return;
-          }
-
-          try {
-            const data = JSON.parse(event.data);
-            accumulatedResponse += data.response; // 累积新的响应
-
-            // 如果现有响应不是以句号结尾，则对累积响应进行过滤，并更新textContent
-            if (!accumulatedResponse.endsWith("。")) {
-              postAIResult.textContent += accumulatedResponse.replace(
-                /(。)\1+/g,
-                "$1"
-              );
-              accumulatedResponse = ""; // 清空累积响应以便下一次消息
-            }
-          } catch (e) {
-            console.error("解析数据时发生错误:", e);
-          }
-        };
-      } catch (error) {
-        postAI.classList.remove("noclick");
-        console.log(error);
+        }
       }
+    } catch (error) {
+      // 在 post-ai-result 元素内部显示错误信息
+      let postAIResult = document.querySelector(".post-ai-result");
+      postAIResult.innerHTML =
+        '<div class="post-ai-error">生成摘要时出错，请重试。</div>';
+      console.log(error);
     }
   }
 </script>
