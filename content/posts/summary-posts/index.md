@@ -50,7 +50,7 @@ summary: 为 Hugo 添加文章摘要
 
 https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fantergone%2Fpalm-proxy
 
-把这串链接的 **antergone** 和 **palm-proxy**改为你自己的用户名和仓库名，然后访问
+把这串链接的 **antergone** 和 **palm-proxy** 改为你自己的用户名和仓库名，然后访问
 
 ## 部署 API 转换
 
