@@ -30,7 +30,7 @@ xml: false
 ```yaml
 - nickname: FloatSheep
   url: https://blog.hesiy.cn
-  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.7/files/avatar.webp
+  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.9/files/avatar.webp
   description: On the other side of obstacles
 ```
 
