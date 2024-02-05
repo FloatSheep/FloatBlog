@@ -41,11 +41,7 @@ export default async function handler(request, response) {
 }
 ```
 
-
-
-![image-20240130192002831](https://storage.yurl.eu.org/pumpkin/blogger/202401301920918.png)
-
-已经给我们返回了我们所请求的值，那么接下来请求这个值，然后返回请求的结果
+我们将 `fetchUrl` 传入 `b`，请求查看，已经给我们返回了我们所请求的值（b），那么接下来请求这个值，然后返回请求的结果
 
 将代码稍作更改
 
@@ -62,7 +58,7 @@ export default async function handler(request, response) {
   }
 ```
 
-![image-20240130192838766](https://storage.yurl.eu.org/pumpkin/blogger/202401301928837.png)
+查看请求，返回了 `{ status: "ojbk"}`
 
 接着我们让它返回请求的数据 
 
@@ -95,9 +91,7 @@ export default async function handler(request, response) {
   }
 ```
 
-![image-20240130193549946](https://storage.yurl.eu.org/pumpkin/blogger/202401301935048.png)
-
-然后我们加上 referer 设定
+请求一个网页，可以发现已经返回了网页的文本内容，然后我们加上 referer 设定
 
 把请求改成这样就行
 
@@ -114,8 +108,6 @@ https.get(fetchUrl, options, (res) => {
 ```
 
 然后我们请求一张图片看看吧
-
-![image-20240130194040084](https://storage.yurl.eu.org/pumpkin/blogger/202401301940173.png)
 
 返回了一堆乱码就算成功了
 
@@ -140,7 +132,7 @@ export default async function handler(request, response) {
   try {
     https.get(imageUrl, options, (res) => {
       if (!res.statusCode || res.statusCode < 200 || res.statusCode >= 300) {
-        return response.status(res.statusCode).json({ error: '你请求个屁' });
+        return response.status(res.statusCode).json({ msg: '你请求个屁' });
       }
 
       response.setHeader('Content-Type', res.headers['content-type']);
@@ -155,6 +147,6 @@ export default async function handler(request, response) {
 }
 ```
 
-![image-20240130194336097](https://storage.yurl.eu.org/pumpkin/blogger/202401301943182.png)
+请求一张图片，可以发现图片被渐进式载入了
 
 好了，收工~ :smiling_face_color:

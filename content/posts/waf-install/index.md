@@ -16,8 +16,6 @@ summary: 记录长亭雷池 WAF 的安装方法，以及更改 Nginx 配置
 
 截至 2024/01/27 18:26 雷池 WAF 社区版只支持 Linux，所以本文所写的一切命令适用于 Linux
 
-![image-20240127182708847](https://storage.yurl.eu.org/pumpkin/blogger/202401271827961.png)
-
 ## 安装
 
 根据 [雷池 WAF 社区版文档][1]
@@ -50,8 +48,6 @@ cd /data/<雷池路径>(可以在安装的时候设置)/resources/nginx/custom_p
 ```
 
 发现这里有很多 Backend 文件
-
-![image-20240127183441615](https://storage.yurl.eu.org/pumpkin/blogger/202401271834642.png)
 
 这里我们叫做 `backend_x`
 
