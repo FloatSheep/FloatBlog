@@ -7,7 +7,7 @@ thumbnail: cover.svg
 draft: false
 gemini: true
 categories: "server"
-tags: [docker"]
+tags: [docker]
 showSummary: true
 summary: 落后的电脑 = 家庭服务器
 ---
