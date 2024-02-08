@@ -16,7 +16,8 @@ self.addEventListener("fetch", (event) => {
   const url = new URL(event.request.url);
 
   // 检查请求的 Accept 头部是否为 EventSource 的 MIME 类型
-  const isEventSource = event.request.headers.get('Accept') === 'text/event-stream';
+  const isEventSource =
+    event.request.headers.get("Accept") === "text/event-stream";
 
   // 不拦截 EventSource 请求
   if (isEventSource) {
@@ -58,6 +59,26 @@ self.addEventListener("fetch", (event) => {
     );
   }
   // 不需要else，因为我们不打算使用event.respondWith()
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.action === "force-refresh") {
+    // 执行刷新逻辑
+    self.registration.update().then(() => {
+      // 清理旧的缓存
+      caches
+        .keys()
+        .then((cacheNames) => {
+          return Promise.all(cacheNames.map((cache) => caches.delete(cache)));
+        })
+        .then(() => {
+          // 更新成功后，通过 postMessage 通知客户端
+          self.clients.matchAll().then((clients) => {
+            clients.forEach((client) => client.postMessage("sw-updated"));
+          });
+        });
+    });
+  }
 });
 
 // 处理CORS的函数

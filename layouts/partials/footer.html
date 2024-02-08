@@ -146,6 +146,20 @@
           </p>
         {{ end }}
       </div>
+      <button onclick="window.fm.refresh()" id="refresh-switcher" type="button" aria-label="Service Worker refresh controller">
+        <div
+          class="flex h-12 w-12 items-center justify-center dark:hidden"
+          title="Refresh Service Worker"
+        >
+          {{ partial "icon.html" "flickr" }}
+        </div>
+        <div
+          class="hidden h-12 w-12 items-center justify-center dark:flex"
+          title="Refresh Service Worker"
+        >
+          {{ partial "icon.html" "flickr" }}
+        </div>
+      </button>
       {{/* Appearance switcher */}}
       {{ if .Site.Params.footer.showAppearanceSwitcher | default false }}
         <div
@@ -174,4 +188,27 @@
     {{ if templates.Exists "partials/extend-footer.html" }}
       {{ partial "extend-footer.html" . }}
     {{ end }}
+    <script>
+      function getCookie(name) {
+        var decodedCookie = decodeURIComponent(document.cookie);
+        var cookies = decodedCookie.split(';');
+        var fullCookieName = name + "=";
+        for(var i = 0; i < cookies.length; i++) {
+            var cookie = cookies[i].trim();
+            if (cookie.indexOf(fullCookieName) === 0) {
+                return cookie.substring(fullCookieName.length, cookie.length);
+            }
+        }
+        return undefined;
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+      if (document.mB && typeof document.mB.show === 'function') {
+        if(getCookie('mbShow') !== 'true') {
+          document.mB.show("如果你的网页出现错误，可以使用页面底部的两点按键！", true, "我已知晓", "#FFF", "top-right", 5000);
+          document.cookie = "mbShow=true; path=/";
+        }
+      } else {
+          console.error('mB is not defined or show is not a function!');
+      }
+  });</script>
   </footer>
