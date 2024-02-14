@@ -50,74 +50,6 @@ xml: false
     will-change: transform
   }
 </style>
-<style>
-#g-container .content-container {
-  display: hidden;
-}
-
-#g-container .message {
-  margin: 1.5rem;
-  border: 1px solid #ddd;
-  padding: 1rem;
-  border-radius: .8rem;
-  -webkit-border-radius: .8rem;
-  -moz-border-radius: .8rem;
-  -ms-border-radius: .8rem;
-  -o-border-radius: .8rem;
-}
-
-#g-container .text {
-  font-size: 16px;
-  color: #333;
-}
-
-#g-container .image {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-}
-
-#g-container .image img {
-  max-width: 92%;
-  max-height: 92%;
-  margin: 5px;
-  object-fit: contain;
-  border: .15rem solid #ddd;
-}
-
-#g-container .tagChina {
-  color: #8989895c;
-  text-align: right;
-}
-
-#load-more {
-  margin-top: 1rem;
-}
-</style>
-<script>
-  Handlebars.registerHelper("tagConverter", function (text) {
-    const regex = /<a[^>]*>(.*?)<\/a>/g;
-    const result = text.replace(
-      regex,
-      `<p class="tagChina">$1</p>`
-    );
-    return new Handlebars.SafeString(result);
-  });
-
-  Handlebars.registerHelper("contains", function (str, sub) {
-    return str.includes(sub);
-  });
-
-  Handlebars.registerHelper("not", function (value) {
-    return !value;
-  });
-
-  Handlebars.registerHelper('replaceImage', function (originalLink) {
-    var newLink = originalLink.replace('https://cdn5.cdn-telegram.org', 'https://tg-talk-cdn.yurl.eu.org');
-    return newLink;
-  });
-</script>
 <div id="talk">
   <div id="g-container">
     <center>
@@ -129,30 +61,84 @@ xml: false
       </div>
       {{<rawhtml>}}
         <script id="template" type="text/x-handlebars-template">
-        <div class="content-container">
-          {{#each ChannelMessageData}}
-            {{#if (not (contains text "Channel"))}}
-              <div class="message">
-                <p class="text">{{tagConverter text}}</p>
-                {{#if image}}
-                  <div class="image">
-                    {{#each image}}
-                      {{#unless (contains this "emoji")}}
-                        <img src="{{ replaceImage this}}" loading="lazy" alt="image" data-zoomable />
-                      {{/unless}}
-                    {{/each}}
-                    {{/if}}
-                  </div>
-                {{/if}}
+          <div class="content-container">
+            {{#each ChannelMessageData}} {{#if (not (contains text "Channel"))}}
+            <div class="message">
+              <div class="info-header"><p class="Tag"><span class="pageTag"><a class="point" onclick="speakTelegram()">#{{ @key }}</a></span> <span class="views">Views: {{views}}</span></p></div>
+              <p class="text">{{tagConverter text}}</p>
+              {{#if image}}
+              <div class="image">
+                {{#each image}} {{#unless (contains this "emoji")}}
+                <img
+                  src="{{ replaceImage this}}"
+                  loading="lazy"
+                  alt="这是一张图片"
+                  data-zoomable
+                />
+                {{/unless}} {{/each}}
               </div>
-          {{/each}}
-        </div>
-      </script>
+              {{/if}}
+              <span class="time">{{replaceTime time}}</span>
+              {{tagChina text true}}
+            </div>
+            {{/if}} {{/each}}
+          </div>
+        </script>
+            <script>
+              function tagExtractor(text) {
+                const regex = /<a[^>]*>(.*?)<\/a>/g;
+                const result = [];
+                let match;
+                while (match = regex.exec(text)) {
+                  result.push(match[1]);
+                }
+                return result;
+              }
+              Handlebars.registerHelper("tagConverter", function (text) {
+                const regex = /<a[^>]*>(.*?)<\/a>/g;
+                const result = text.replace(regex, "");
+                return new Handlebars.SafeString(result);
+              });
+              Handlebars.registerHelper("tagExtractor", function (text) {
+                const regex = /<a[^>]*>(.*?)<\/a>/g;
+                const result = [];
+                let match;
+                while (match = regex.exec(text)) {
+                  result.push(match[1]);
+                }
+                return result;
+              });
+              Handlebars.registerHelper("tagChina", function (text, renderTagList) {
+                const tags = tagExtractor(text);
+                let result = "";
+                if (renderTagList && tags.length > 0) {
+                  // 只有当 renderTagList 为真且 tags 不为空时，才渲染 tagList
+                  result += `<div class="tagList">`; // 添加 div 元素
+                  for (let tag of tags) {
+                    result += `<span class="tagChina">${tag}</span>`;
+                  }
+                  result += `</div>`; // 添加 div 元素
+                }
+                return new Handlebars.SafeString(result);
+              });
+              Handlebars.registerHelper("contains", function (str, sub) {
+                return str.includes(sub);
+              });
+              Handlebars.registerHelper("not", function (value) {
+                return !value;
+              });
+              Handlebars.registerHelper('replaceImage', function (originalLink) {
+                var newLink = originalLink.replace('https://cdn5.cdn-telegram.org', 'https://tg-talk-cdn.yurl.eu.org');
+                return newLink;
+              });
+              Handlebars.registerHelper("replaceTime", (timestamp) =>
+                new Date(timestamp).toLocaleString("zh-CN")
+              );
+            </script>
       {{</rawhtml>}}
-      <button id="load-more" type="button">More...</button>
+      <center><button id="load-more" type="button">More...</button></center>
       </center>
       <script src="/js/gtalk.min.js"></script>
-
 {{<rawhtml>}}
     <script>
       window.G_CONFIG = {
@@ -160,11 +146,15 @@ xml: false
         ref: "g-container",
         zoom: true,
       };
-
       document.addEventListener("DOMContentLoaded", () => {
           document.getElementById("load-more").style.display = "none;"
       })
-
+      function speakTelegram(){
+        document.mB.show("正在跳转到 Telegram", true, "我明白了！", "#FFF", "top-center", 1000);
+        setTimeout(function () {
+          open("https://t.me/nzspeak")
+        }, 500);
+      }
     </script>
 {{</rawhtml>}}
   <script src="https://npm.onmicrosoft.cn/medium-zoom@1.1.0/dist/medium-zoom.min.js"></script>

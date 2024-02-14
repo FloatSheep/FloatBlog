@@ -233,3 +233,128 @@ html {
     -o-transform: scale(1.2) translateY(-25px) rotateX(45deg);
 }
 }
+
+#g-container .content-container {
+  display: hidden;
+}
+
+#g-container .message {
+  margin: 1.5rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: .8rem;
+  -webkit-border-radius: .8rem;
+  -moz-border-radius: .8rem;
+  -ms-border-radius: .8rem;
+  -o-border-radius: .8rem;
+}
+
+#g-container .time {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  margin-top: 2.3rem;
+}
+
+#g-container .Tag {
+  font-size: 22px;
+  margin-top: 0;
+}
+
+#g-container .Tag .pageTag {
+  font-size: 26px;
+  font-weight: bold;
+}
+
+#g-container .Tag .pageTag .point {
+  cursor: pointer;
+  color: gray;
+  text-decoration: none;
+  font-size: 26px;
+  font-style: italic;
+}
+
+#g-container .Tag .pageTag .point:hover {
+  text-decoration: none;
+  background-color: transparent;
+}
+
+#g-container .content-container {
+  display: hidden;
+}
+
+#g-container .message {
+  margin: 1.5rem;
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: .8rem;
+  -webkit-border-radius: .8rem;
+  -moz-border-radius: .8rem;
+  -ms-border-radius: .8rem;
+  -o-border-radius: .8rem;
+}
+
+#g-container .text {
+  font-size: 16px;
+  color: #333;
+}
+
+#g-container .image {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+#g-container .image img {
+  max-width: 92%;
+  max-height: 92%;
+  margin: 5px;
+  object-fit: contain;
+  border: .15rem solid #ddd;
+}
+
+#g-container .tagChina {
+  color: #8989895c;
+  text-align: right;
+  margin-bottom: 0;
+  margin-right: .5rem;
+}
+
+#g-container .tagList {
+  display: flex;
+  justify-content: flex-end;
+  padding: 1rem;
+  padding-bottom: .1rem;
+  padding-right: 0;
+}
+
+#g-container .views {
+  display: flex;
+  float: right;
+}
+
+#load-more {
+  margin-top: 1rem;
+  border: .2rem #c1c0c0 solid;
+  background-color: #c1c0c0;
+  border-radius: 10%;
+  box-shadow: 3px 5px 8px gray;
+  padding: .4rem;
+  transition: all .2s;
+  -webkit-transition: all .2s;
+  -moz-transition: all .2s;
+  -ms-transition: all .2s;
+  -o-transition: all .2s;
+  -webkit-border-radius: 10%;
+  -moz-border-radius: 10%;
+  -ms-border-radius: 10%;
+  -o-border-radius: 10%;
+}
+
+#load-more:hover {
+  background-color: transparent;
+  padding: .4rem;
+  box-shadow: 0 0 0;
+}
