@@ -169,16 +169,10 @@
         >
           <button id="appearance-switcher-0" type="button" aria-label="appearance switcher">
             <div
-              class="flex h-12 w-12 items-center justify-center dark:hidden"
+              class="flex h-12 w-12 items-center justify-center dark:flex"
               title="{{ i18n "footer.dark_appearance" }}"
             >
-              {{ partial "icon.html" "moon" }}
-            </div>
-            <div
-              class="hidden h-12 w-12 items-center justify-center dark:flex"
-              title="{{ i18n "footer.light_appearance" }}"
-            >
-              {{ partial "icon.html" "sun" }}
+              <theme-button value="light"  id="btn" size="0.06"></theme-button>
             </div>
           </button>
         </div>
@@ -210,5 +204,6 @@
       } else {
           console.error('mB is not defined or show is not a function!');
       }
-  });</script>
+  });
+  </script>
   </footer>
