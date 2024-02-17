@@ -324,6 +324,7 @@ html {
 #g-container .tagList {
   display: flex;
   justify-content: flex-end;
+  user-select: none;
   padding: 1rem;
   padding-bottom: .1rem;
   padding-right: 0;
@@ -350,6 +351,28 @@ html {
   -moz-border-radius: 10%;
   -ms-border-radius: 10%;
   -o-border-radius: 10%;
+}
+
+#g-container .svg-blocked {
+  width: 1rem;
+  height: 1rem;
+}
+
+#g-container #safeChina {
+  border: .13rem #FCE9B9 solid;
+  border-radius: 13%;
+  cursor: pointer;
+  transition: all .3s;
+  -webkit-transition: all .3s;
+  -moz-transition: all .3s;
+  -ms-transition: all .3s;
+  -o-transition: all .3s;
+}
+
+#g-container #safeChina:hover {
+  border: .13rem #FCE9B9 solid;
+  background-color: #FCE9B9;
+  color: #000;
 }
 
 #load-more:hover {

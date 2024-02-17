@@ -86,7 +86,7 @@ xml: false
         </script>
             <script>
               function tagExtractor(text) {
-                const regex = /<a[^>]*>(.*?)<\/a>/g;
+                const regex = /<a[^>]*>#(.*?)<\/a>/g;
                 const result = [];
                 let match;
                 while (match = regex.exec(text)) {
@@ -95,12 +95,12 @@ xml: false
                 return result;
               }
               Handlebars.registerHelper("tagConverter", function (text) {
-                const regex = /<a[^>]*>(.*?)<\/a>/g;
+                const regex = /<a[^>]*>#(.*?)<\/a>/g;
                 const result = text.replace(regex, "");
                 return new Handlebars.SafeString(result);
               });
               Handlebars.registerHelper("tagExtractor", function (text) {
-                const regex = /<a[^>]*>(.*?)<\/a>/g;
+                const regex = /<a[^>]*>#(.*?)<\/a>/g;
                 const result = [];
                 let match;
                 while (match = regex.exec(text)) {
@@ -115,7 +115,11 @@ xml: false
                   // 只有当 renderTagList 为真且 tags 不为空时，才渲染 tagList
                   result += `<div class="tagList">`; // 添加 div 元素
                   for (let tag of tags) {
-                    result += `<span class="tagChina">${tag}</span>`;
+                    if (tag === 'SFCN') {
+                      result +=`<span class="tagChina" id="safeChina" onclick="safeSnackbar()">#${tag}💫</span>`
+                    } else {
+                        result += `<span class="tagChina">#${tag}</span>`;
+                    }
                   }
                   result += `</div>`; // 添加 div 元素
                 }
@@ -127,8 +131,11 @@ xml: false
               Handlebars.registerHelper("not", function (value) {
                 return !value;
               });
-              Handlebars.registerHelper('replaceImage', function (originalLink) {
-                var newLink = originalLink.replace('https://cdn5.cdn-telegram.org', 'https://tg-talk-cdn.yurl.eu.org');
+              Handlebars.registerHelper("replaceImage", function (originalLink) {
+                var newLink = originalLink.replace(
+                  /https:\/\/(.*?)\.cdn-telegram\.org\/file\/(.+)/,
+                  'https://tg-talk-cdn.yurl.eu.org/?cdn-id=$1&proxy=$2'
+                );
                 return newLink;
               });
               Handlebars.registerHelper("replaceTime", (timestamp) =>
@@ -147,13 +154,16 @@ xml: false
         zoom: true,
       };
       document.addEventListener("DOMContentLoaded", () => {
-          document.getElementById("load-more").style.display = "none;"
+          document.getElementById("load-more").style.display = "none";
       })
       function speakTelegram(){
         document.mB.show("正在跳转到 Telegram", true, "我明白了！", "#FFF", "top-center", 1000);
         setTimeout(function () {
           open("https://t.me/nzspeak")
         }, 500);
+      }
+      function safeSnackbar() {
+        document.mB.show("此消息经过人工审查，可为大陆用户展示", true, "我明白了！", "#FFF", "top-right", 5000);
       }
     </script>
 {{</rawhtml>}}
