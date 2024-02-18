@@ -65,7 +65,7 @@ xml: false
             {{#each ChannelMessageData}} {{#if (not (contains text "Channel"))}}
             <div class="message">
               <div class="info-header"><p class="Tag"><span class="pageTag"><a class="point" onclick="speakTelegram()">#{{ @key }}</a></span> <span class="views">Views: {{views}}</span></p></div>
-              <p class="text">{{tagConverter text}}</p>
+              <p class="text">{{maskRender text}}</p>
               {{#if image}}
               <div class="image">
                 {{#each image}} {{#unless (contains this "emoji")}}
@@ -98,15 +98,6 @@ xml: false
                 const regex = /<a[^>]*>#(.*?)<\/a>/g;
                 const result = text.replace(regex, "");
                 return new Handlebars.SafeString(result);
-              });
-              Handlebars.registerHelper("tagExtractor", function (text) {
-                const regex = /<a[^>]*>#(.*?)<\/a>/g;
-                const result = [];
-                let match;
-                while (match = regex.exec(text)) {
-                  result.push(match[1]);
-                }
-                return result;
               });
               Handlebars.registerHelper("tagChina", function (text, renderTagList) {
                 const tags = tagExtractor(text);
@@ -141,6 +132,23 @@ xml: false
               Handlebars.registerHelper("replaceTime", (timestamp) =>
                 new Date(timestamp).toLocaleString("zh-CN")
               );
+            </script>
+            <script>
+                Handlebars.registerHelper("maskRender", function (text) {
+                  text = Handlebars.helpers.tagConverter(text);
+                  if (text instanceof Handlebars.SafeString) {
+                    text = text.toString();
+                  }
+                  const regex = /<tg-spoiler>(.*?)<\/tg-spoiler>/g;
+                  const replace = function (match, p1) {
+                    return `<span class="plugin-heimu" id="heimu"><s>${p1}</s></span>`;
+                  };
+                  if (regex.test(text)) {
+                    return new Handlebars.SafeString(text.replace(regex, replace));
+                  } else {
+                    return new Handlebars.SafeString(text);
+                  }
+                });
             </script>
       {{</rawhtml>}}
       <center><button id="load-more" type="button">More...</button></center>
