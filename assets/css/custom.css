@@ -4,6 +4,10 @@
   src: url("https://font.onmicrosoft.cn/floatsheep-hosting@1.0.1/static/fonts/LXGWWenKai-Regular.ttf");
 }
 
+.scroll-smooth {
+  scroll-behavior: inherit !important;
+}
+
 html {
   line-height: 1.5;
   -webkit-text-size-adjust: 100%;
@@ -379,4 +383,57 @@ html {
   background-color: transparent;
   padding: .4rem;
   box-shadow: 0 0 0;
+}
+
+#pagemap {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 197px;
+  height: 89%;
+  z-index: 100;
+  opacity: 0;
+  transition: .1s;
+  -webkit-transition: .1s;
+  -moz-transition: .1s;
+  -ms-transition: .1s;
+  -o-transition: .1s;
+}
+
+#pagemap:hover{
+  opacity: 1;
+}
+
+.fadeout {
+  animation-timeline: auto;
+  animation-range-start: normal;
+  animation-range-end: normal;
+  animation: 1s ease 0s 1 normal forwards running fadeOutAnimation;
+}
+
+.fadein {
+  animation-timeline: auto;
+  animation-range-start: normal;
+  animation-range-end: normal;
+  animation: 1s ease 0s 1 normal forwards running fadeInAnimation;
+}
+
+@keyframes fadeOutAnimation {
+  0% {
+      opacity: 1;
+  }
+
+  100% {
+      opacity: 0;
+  }
+}
+
+@keyframes fadeInAnimation {
+  0% {
+      opacity: 0;
+  }
+
+  100% {
+      opacity: 1;
+  }
 }

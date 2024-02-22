@@ -65,7 +65,7 @@ fingerprintAlgorithm = "sha256"
   #   { whatsapp = "https://wa.me/phone-number" },
   #   { youtube = "https://youtube.com/username" },
    ]
-  
+
 [header]
   layout = "custom" # valid options: basic, hamburger, hybrid, custom
   # logo = "avatar.webp"
@@ -76,7 +76,7 @@ fingerprintAlgorithm = "sha256"
   showCopyright = true
   showThemeAttribution = true
   showAppearanceSwitcher = true
-  showScrollToTop = true
+  showScrollToTop = false
 
 [homepage]
   layout = "profile" # valid options: page, profile, custom
