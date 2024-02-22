@@ -400,6 +400,12 @@ html {
   -o-transition: .1s;
 }
 
+@media (max-width: 1420px) {
+  #pagemap {
+    display: none;
+  }
+}
+
 #pagemap:hover{
   opacity: 1;
 }

@@ -38,6 +38,10 @@
       };
     } */
 
+    function removeEffect(element) {
+      element.classList.remove("fadeout");
+    }
+
     function addFadein(element) {
       if (element) {
         if (!element.classList.contains("fadeout")) {
@@ -50,6 +54,9 @@
           setTimeout(() => {
             element.classList.remove("fadein");
             element.classList.add("fadeout");
+            setTimeout(() => {
+              removeEffect(element);
+            }, 800);
           }, 800);
         });
       }
