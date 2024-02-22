@@ -30,7 +30,7 @@
       }
     };
 
-/*     function debounce(func, delay) {
+    /*     function debounce(func, delay) {
       let timeoutId;
       return function (...args) {
         clearTimeout(timeoutId);
@@ -47,27 +47,49 @@
         if (!element.classList.contains("fadeout")) {
           element.classList.add("fadein");
         } else {
+          element.addEventListener("transitionend", () => {
+            if (window.noHover) {
+              element.classList.remove("fadein");
+              element.classList.add("fadeout");
+            }
+          });
           element.classList.remove("fadeout");
           element.classList.add("fadein");
         }
-        addEventListener("scrollend", (event) => {
-          setTimeout(() => {
-            element.classList.remove("fadein");
-            element.classList.add("fadeout");
-            setTimeout(() => {
-              removeEffect(element);
-            }, 800);
-          }, 800);
-        });
       }
     }
 
-    addEventListener("scroll", (event) => {
-      const mapElement = document.getElementById("pagemap");
-      if (mapElement) {
-        addFadein(mapElement);
-      }
-    });
+    const mapElement = document.getElementById("pagemap");
+    if (mapElement) {
+      // 监听鼠标悬停状态
+      mapElement.addEventListener("mouseenter", () => {
+        window.noHover = false;
+      });
+      mapElement.addEventListener("mouseleave", () => {
+        window.noHover = true;
+      });
+
+      // 监听滚动事件
+      addEventListener("scroll", () => {
+        // 如果鼠标不在pagemap上，就添加fadein效果
+        if (window.noHover) {
+          addFadein(mapElement);
+        }
+      });
+
+      // 监听自定义的插件事件
+      addEventListener("scrollend", () => {
+        if (window.noHover) {
+          setTimeout(() => {
+            mapElement.classList.remove("fadein");
+            mapElement.classList.add("fadeout");
+            setTimeout(() => {
+              removeEffect(mapElement);
+            }, 800);
+          }, 800);
+        }
+      });
+    }
   });
 </script>
 <script src="/js/modules/emojiReplace.js"></script>

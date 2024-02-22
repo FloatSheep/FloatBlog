@@ -393,11 +393,11 @@ html {
   height: 89%;
   z-index: 100;
   opacity: 0;
-  transition: .1s;
-  -webkit-transition: .1s;
-  -moz-transition: .1s;
-  -ms-transition: .1s;
-  -o-transition: .1s;
+  transition: 800ms;
+  -webkit-transition: 800ms;
+  -moz-transition: 800ms;
+  -ms-transition: 800ms;
+  -o-transition: 800ms;
 }
 
 @media (max-width: 1420px) {
