@@ -65,3 +65,8 @@
    pageRef = "sitemap.xml"
    url = "/sitemap.xml"
    weight = 10
+ [[footer]]
+   name = "吐槽日常"
+   pageRef = "https://mo.hesiy.cn"
+   url = "https://mo.hesiy.cn"
+   weight = 10
