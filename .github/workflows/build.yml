@@ -13,6 +13,10 @@ jobs:
         with:
           node-version: 16.x
 
+      - name : Prepare NodePack
+        run: |
+          npm install cnpm --global
+
       - name: Cache node modules
         uses: actions/cache@v1
         with:
@@ -31,19 +35,15 @@ jobs:
 
       - name: NPM Publish Pre Set
         run: |
-          node ./prep/main.js
+          node ./scripts/after/pkgUpdate
 
       - name: NPM Publish
         run: |
           npm config set _authToken=${{ secrets.NPM_T }}
-          echo "A"
           cd ./public
-          echo "B"
           ls
-          echo "C"
           npm publish --access=public
-          echo "D"
+
       - name: Refresh cache
         run: |
-          npm install cnpm --global
           cnpm sync fsl-blog
