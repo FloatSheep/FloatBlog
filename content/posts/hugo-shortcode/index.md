@@ -63,17 +63,17 @@ summary: 什么是 Shortcodes & 如何编写自己的 Shortcodes
 
 现在我们将它命名为 **colorfont**
 
-![image-20230826104235937](https://rmt.ladydaily.com/fetch/hajeekn/storage/202308261042959.png)
+![image-20230826104235937](https://dogefs.s3.ladydaily.com/hajeekn/storage/202308261042959.png)
 
 我们在里面写一段简单的 **HTML** 
 
 让我们可以通过 `color=colorname` 的方式传参给 **Shortcodes**，所以我们使用  `{{ with .Get "color" }}`
 
-![image-20230826104800765](https://rmt.ladydaily.com/fetch/hajeekn/storage/202308261048844.png)
+![image-20230826104800765](https://dogefs.s3.ladydaily.com/hajeekn/storage/202308261048844.png)
 
 接着，我们使用 **Shortcodes** 让文字变红，这时候，我们就需要使用 `{{ .Inner }}` 来获取我们传给 **Shortcodes** 的文字
 
-![image-20230826105125474](https://rmt.ladydaily.com/fetch/hajeekn/storage/202308261051551.png)
+![image-20230826105125474](https://dogefs.s3.ladydaily.com/hajeekn/storage/202308261051551.png)
 
 这样我们就完成了一个简单的 **Shortcodes**
 

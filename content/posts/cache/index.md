@@ -29,9 +29,9 @@ summary: 通过 JavaScript 缓存自定义字体
 
 ## 0. 浏览器兼容性
 
-![image-20230829120744352](https://rmt.ladydaily.com/fetch/hajeekn/storage/202308291207392.png)
+![image-20230829120744352](https://dogefs.s3.ladydaily.com/hajeekn/storage/202308291207392.png)
 
-![image-20230829120813207](https://rmt.ladydaily.com/fetch/hajeekn/storage/202308291208231.png)
+![image-20230829120813207](https://dogefs.s3.ladydaily.com/hajeekn/storage/202308291208231.png)
 
 ## 1. 使用 Service Worker 进行缓存
 

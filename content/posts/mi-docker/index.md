@@ -24,7 +24,7 @@ summary: 折腾路由器的一次经历
 
 以上工具（文件、硬件）除硬盘外均可在小米路由器官方网站下载
 
-![image-20230930122411029](https://rmt.ladydaily.com/fetch/hajeekn/storage/202309301224615.png)
+![image-20230930122411029](https://dogefs.s3.ladydaily.com/hajeekn/storage/202309301224615.png)
 
 文章使用版本：
 
@@ -36,7 +36,7 @@ summary: 折腾路由器的一次经历
 
 进入路由器后台，在常用设置 -> 系统状态中进行新建备份
 
-![image-20230930123036538](https://rmt.ladydaily.com/fetch/hajeekn/storage/202309301230559.png)
+![image-20230930123036538](https://dogefs.s3.ladydaily.com/hajeekn/storage/202309301230559.png)
 
 然后使用手动上传功能更新开发版固件
 
@@ -44,7 +44,7 @@ summary: 折腾路由器的一次经历
 
 这时候访问路由器后台，进入高级设置 -> DOCKER，你也许会看见如下页面
 
-![image-20230930124422521](https://rmt.ladydaily.com/fetch/hajeekn/storage/202309301244547.png)
+![image-20230930124422521](https://dogefs.s3.ladydaily.com/hajeekn/storage/202309301244547.png)
 
 这样即代表你安装成功了
 
@@ -52,11 +52,11 @@ summary: 折腾路由器的一次经历
 
 使用你所喜爱的磁盘格式化工具将存储设备格式化为 EXT4（Linux）就好[^2]
 
-接着将储存设备插入至路由器 Mesh 组网面，然后对设备进行重启![image-20230930124809077](https://rmt.ladydaily.com/fetch/hajeekn/storage/202309301248092.png)
+接着将储存设备插入至路由器 Mesh 组网面，然后对设备进行重启![image-20230930124809077](https://dogefs.s3.ladydaily.com/hajeekn/storage/202309301248092.png)
 
 重启完成后你可以在路由器管理页面的存储状态中查看到你的设备信息
 
-![image-20220722114422388](https://rmt.ladydaily.com/fetch/hajeekn/storage/202309301249102.png)
+![image-20220722114422388](https://dogefs.s3.ladydaily.com/hajeekn/storage/202309301249102.png)
 
 我们首先创建虚拟内存[^3]，然后转到高级设置 -> DOCKER 对 Docker 进行安装，等待安装完成后点击安装第三方管理（此处由于天朝网络特性，可能会失败）
 
@@ -96,11 +96,11 @@ http://[IP]/cgi-bin/luci/;stok=<STOK>/api/misystem/set_config_iotdev?bssid=Xiaom
 
 接着转到高级容器设置，将 `Console` 更改为 `Interactive & TTY (-i -t)`
 
-![image-20230930130657700](https://rmt.ladydaily.com/fetch/hajeekn/storage/202309301306717.png)
+![image-20230930130657700](https://dogefs.s3.ladydaily.com/hajeekn/storage/202309301306717.png)
 
 然后转到 `Volumes` 部分，新建 `mapping` 将 `container` 填写 `/mnt` 并将模式改为 `Bind` ，将 `host` 填写为 `/` 并将权限改为 `Writable`
 
-![image-20230930130644785](https://rmt.ladydaily.com/fetch/hajeekn/storage/202309301306812.png)
+![image-20230930130644785](https://dogefs.s3.ladydaily.com/hajeekn/storage/202309301306812.png)
 
 部署之后在容器列表的快速操作中选择 `Attach Console`
 

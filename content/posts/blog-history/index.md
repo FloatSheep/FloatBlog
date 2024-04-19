@@ -21,7 +21,7 @@ summary: 告别以前，迎接未来
 主题是 [hexo-theme-miho][2]
 
 {{< figure
-  src="https://rmt.ladydaily.com/fetch/hajeekn/storage/image-20230825164555898.png"
+  src="https://dogefs.s3.ladydaily.com/hajeekn/storage/image-20230825164555898.png"
     caption="主题 Demo"
     >}}
 
@@ -34,7 +34,7 @@ summary: 告别以前，迎接未来
 > OS: 当时 Butterfly 的版本还是 **2.3.0**，现在 [Butterfly][4] 的版本已经迭代到 **4.9.0** 了，时间过的真快啊
 
 {{< figure
-  src="https://rmt.ladydaily.com/fetch/hajeekn/storage/image-20230825170541711.png"
+  src="https://dogefs.s3.ladydaily.com/hajeekn/storage/image-20230825170541711.png"
     caption="主题 Demo"
     >}}
 
@@ -56,7 +56,7 @@ summary: 告别以前，迎接未来
 更换的主题叫 [Aurora][5]
 
 {{< figure
-  src="https://rmt.ladydaily.com/fetch/hajeekn/storage/image-20230825175857040.png"
+  src="https://dogefs.s3.ladydaily.com/hajeekn/storage/image-20230825175857040.png"
     caption="主题 Demo"
     >}}
 
@@ -69,12 +69,12 @@ summary: 告别以前，迎接未来
 我也不能闲着，于是找了个模板套了进去，顺便给它添加了友链的功能
 
 {{< figure
-  src="https://rmt.ladydaily.com/fetch/hajeekn/storage/202308251958607.png"
+  src="https://dogefs.s3.ladydaily.com/hajeekn/storage/202308251958607.png"
     caption="主页"
     >}}
 
 {{< figure
-  src="https://rmt.ladydaily.com/fetch/hajeekn/storage/202308251959147.png"
+  src="https://dogefs.s3.ladydaily.com/hajeekn/storage/202308251959147.png"
     caption="友链页面"
     >}}
 
@@ -96,7 +96,7 @@ summary: 告别以前，迎接未来
 在选择了 [Hugo][8] 之后,我用了 [Congo][9] 作为博客主题
 
 {{< figure
-  src="https://rmt.ladydaily.com/fetch/hajeekn/storage/202308252020632.png"
+  src="https://dogefs.s3.ladydaily.com/hajeekn/storage/202308252020632.png"
     caption="主题 Demo"
     >}}
 
