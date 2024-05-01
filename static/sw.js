@@ -161,6 +161,16 @@ self.addEventListener("message", (event) => {
   if (event.data && event.data.action === "force-refresh") {
     // 执行刷新逻辑
     self.registration.update().then(() => {
+      // 清理 IndexedDB
+      localforage
+        .removeItem("version")
+        .then(function () {
+          console.log("版本缓存清除");
+        })
+        .catch(function (err) {
+          console.log(err);
+        });
+
       // 清理旧的缓存
       caches
         .keys()
