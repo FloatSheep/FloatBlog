@@ -119,6 +119,7 @@ html {
   background-color: #000000;
   transition: 0.1s;
   border-radius: 10.1%;
+  border-radius: .3rem !important;
   -webkit-transition: 0.1s;
   -moz-transition: 0.1s;
   -ms-transition: 0.1s;
