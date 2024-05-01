@@ -87,6 +87,15 @@ self.addEventListener("fetch", (event) => {
 
   const url = new URL(event.request.url);
 
+  // 检查请求的 Accept 头部是否为 EventSource 的 MIME 类型
+  const isEventSource =
+    event.request.headers.get("Accept") === "text/event-stream";
+
+  if (isEventSource) {
+    // 如果是 EventSource 请求则不拦截，让浏览器直接处理
+    return;
+  }
+
   // 判断当前是否处于本地开发模式或者请求的域名是否为博客域名
   const shouldIntercept = localMode || url.hostname === blogDomain;
 
@@ -146,6 +155,26 @@ self.addEventListener("fetch", (event) => {
 
 self.addEventListener("terminate", (event) => {
   isDataFetched = false; // 重置数据获取标志
+});
+
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.action === "force-refresh") {
+    // 执行刷新逻辑
+    self.registration.update().then(() => {
+      // 清理旧的缓存
+      caches
+        .keys()
+        .then((cacheNames) => {
+          return Promise.all(cacheNames.map((cache) => caches.delete(cache)));
+        })
+        .then(() => {
+          // 更新成功后，通过 postMessage 通知客户端
+          self.clients.matchAll().then((clients) => {
+            clients.forEach((client) => client.postMessage("sw-updated"));
+          });
+        });
+    });
+  }
 });
 
 // 处理CORS的函数
