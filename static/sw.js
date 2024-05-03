@@ -1,4 +1,4 @@
-self.importScripts("/js/localforage.min.js");
+self.importScripts("/js/cache-db.min.js");
 
 let blogVersion = "";
 let checkJson = {};
@@ -9,18 +9,26 @@ const packageName = "fsl-blog"; // 博客包名，根据实际情况替换
 const blogDomain = "blog.hesiy.cn"; // 博客域名，根据实际情况替换
 const localMode = false; // 本地模式标志，设置为true时将忽略域名检查
 
-// 检查版本并更新
-function storageOperation(newVersion) {
-  // 定义 storageOperation 函数
-  return localforage
-    .getItem("version")
+const cacheObject = new CacheDB("ServiceStorage", "objectPrefix", { auto: 1 });
+
+// Cache-DB used
+function cacheOperation(newVersion) {
+  // 防止 Promise 报错
+  cacheObject.write("version");
+  // 定义 cacheOperation 函数
+  return cacheObject
+    .read("version")
     .then((nowVersion) => {
-      // 通过 localforage 操作 IndexedDB
-      if (!nowVersion || nowVersion !== newVersion) {
+      // 转换将 cache-DB 存储的版本号（Type: String）转换成数字类型
+      convertVersion = nowVersion.split("-").map((num) => {
+        return Number(num);
+      })[1];
+      // 通过 cache-DB 操作 cacheDB
+      if (!convertVersion || convertVersion !== newVersion) {
         // 条件判断 最新版本不存在 & 当前版本不等于传入参数：newVersion
-        return localforage.setItem("version", newVersion).then(() => {
-          // 调用 localforage 更新 IndexedDB 中的值并回调
-          console.log(`版本已更新到：${newVersion}`);
+        return cacheObject.write("version", newVersion).then((fallback) => {
+          // 调用 cache-DB 更新 cacheDB 中的值并回调
+          console.log(`版本已更新：${newVersion}, 回调：${fallback}`);
           return true; // 表示有新的版本更新
         });
       } else {
@@ -38,13 +46,13 @@ function checkUpdate(data) {
   // 定义一个 checkUpdate 函数
   const latestVersion = data["dist-tags"].latest; // 从传入参数：data 数组的 dist-tags 中读取 latest 值
 
-  storageOperation(latestVersion) // 调用 storageOperation 进行 IndexedDB 的更新操作
+  cacheOperation(latestVersion) // 调用 cacheOperation 进行 IndexedDB 的更新操作
     .then((isUpdated) => {
       if (isUpdated) {
-        // 如果 storageOperation(data) 比对并进行了版本修改
+        // 如果 cacheOperation(data) 比对并进行了版本修改
         console.log("博客缓存版本已更新");
       } else {
-        // 如果 storageOperation(data) 无操作
+        // 如果 cacheOperation(data) 无操作
         console.log(`当前版本: ${latestVersion} 是最新的`);
       }
     })
@@ -114,8 +122,8 @@ self.addEventListener("fetch", (event) => {
     }
 
     // 处理版本信息
-    localforage
-      .getItem("version")
+    cacheObject
+      .read("version")
       .then((nowVersion) => {
         if (nowVersion) {
           // 如果存在版本信息，则使用该版本
@@ -135,7 +143,10 @@ self.addEventListener("fetch", (event) => {
       fetch(npmPath)
         .then((response) => {
           if (!response.ok) {
-            throw new Error("NPM Mirror 响应出现问题：范围脱离 200 ~ 299");
+            // 如果第一个请求不成功，则尝试原始请求
+            throw new Error(
+              `NPM Mirror 响应出现问题, 状态码返回：${response.status}`
+            );
           }
           return corsResponse(response);
         })
@@ -144,7 +155,21 @@ self.addEventListener("fetch", (event) => {
             "从 NPM Mirror 获取数据失败，退回到原请求：",
             error.message
           );
-          return fetch(event.request); // 如果失败，则回退到原始请求
+          return fetch(event.request)
+            .then((response) => {
+              if (!response.ok) {
+                // 如果原始请求也不成功，返回404页面
+                throw new Error("原始请求失败");
+              }
+              return corsResponse(response);
+            })
+            .catch((error) => {
+              console.log("原始请求失败，返回404页面：", error.message);
+              // 返回404页面
+              return fetch(
+                `${NPM_REGISTRY_BASE_URL}${packageName}/${blogVersion}/files/404.html`
+              ).then((response) => corsResponse(response));
+            });
         })
     );
   } else {
@@ -162,8 +187,8 @@ self.addEventListener("message", (event) => {
     // 执行刷新逻辑
     self.registration.update().then(() => {
       // 清理 IndexedDB
-      localforage
-        .removeItem("version")
+      cacheObject
+        .delete("version")
         .then(function () {
           console.log("版本缓存清除");
         })
