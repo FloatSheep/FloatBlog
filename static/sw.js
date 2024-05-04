@@ -172,9 +172,6 @@ self.addEventListener("fetch", (event) => {
             });
         })
     );
-  } else {
-    // 对于不符合条件的请求，保持原样不做处理
-    return fetch(event.request);
   }
 });
 
