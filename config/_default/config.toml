@@ -9,6 +9,7 @@ enableRobotsTXT = true
 paginate = 10
 summaryLength = 0
 hasCJKLanguage = true
+rssLimit = 30
 
 [outputs]
   home = ["HTML", "RSS", "JSON"]
