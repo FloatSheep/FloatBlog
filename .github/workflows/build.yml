@@ -46,4 +46,4 @@ jobs:
 
       - name: Refresh cache
         run: |
-          cnpm sync fsl-blog
+          cnpm sync @floatsheep/fsl-blog
