@@ -24,3 +24,6 @@ rssLimit = 30
 
 [params]
     dateFormat = "2006 年 01 月 02 日"
+  [params.artalk]
+    server = 'https://fs_artalk.i45s.com'
+    site = "FloatSheep's Blog"
