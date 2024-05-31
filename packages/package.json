@@ -1,6 +1,6 @@
 {
-  "name": "floatsheep-hosting",
-  "version": "1.0.2",
+  "name": "@floatsheep/floatsheep-hosting",
+  "version": "1.0.0",
   "description": "Float OSS",
   "main": "index.txt",
   "scripts": {

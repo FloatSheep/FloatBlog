@@ -5,7 +5,7 @@ let checkJson = {};
 let isDataFetched = false;
 
 const NPM_REGISTRY_BASE_URL = "https://registry.npmmirror.com/";
-const packageName = "fsl-blog"; // 博客包名，根据实际情况替换
+const packageName = "@floatsheep/fsl-blog"; // 博客包名，根据实际情况替换
 const blogDomain = "blog.hesiy.cn"; // 博客域名，根据实际情况替换
 const localMode = false; // 本地模式标志，设置为true时将忽略域名检查
 
