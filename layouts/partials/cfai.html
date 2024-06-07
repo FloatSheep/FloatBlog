@@ -1,6 +1,7 @@
-<div class="post-ai" onclick="cfWKAI()">
+<div class="post-ai" onclick="qwenSummary()">
   <img alt="Static Badge" src="/cfai.svg" />
 </div>
+<div id="post-ai-result" class="post-ai-result none-show"></div>
 <style>
   @keyframes spin {
     from {
@@ -15,147 +16,110 @@
   }
   .post-ai-result {
     box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
-    background-color: var(--light-header);
+    background-color: #f7f7f914;
     border-radius: 6px;
     padding: 0.5rem 1rem;
+    margin-bottom: .9rem;
     min-height: 3rem;
     max-width: 41rem;
+  }
+  .none-show {
+    display: none;
   }
   .post-ai {
     margin-bottom: 1rem;
   }
-  .noclick {
-    pointer-events: none;
+  .ai-cursor {
+    display: inline-block;
+    width: 7px;
+    background: #333;
+    height: 16px;
+    margin-bottom: -2px;
+    opacity: 0.95;
+    margin-left: 3px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    -o-transition: all 0.3s;
+    -ms-transition: all 0.3s;
+    transition: all 0.3s;
+    animation: blink 1s infinite;
+  }
+  @keyframes blink {
+    0%,
+    50%,
+    100% {
+      opacity: 1;
+    }
+    25%,
+    75% {
+      opacity: 0;
+    }
   }
 </style>
 <script>
-  let postAI = document.querySelector(".post-ai");
-  let postTile = document.querySelector("#title").textContent;
-  let cfWKUrl = "https://cl.yurl.eu.org";
-  window.rk = false;
-  async function cfWKAI() {
-    postAI.insertAdjacentHTML(
-      "afterend",
-      '<div class="post-ai-result"><div class="loading">加载中...</div></div>'
-    );
-    if (window.rk) {
-      let rke = document.querySelector(".post-ai-result");
-      rke.remove();
-      postAI.classList.add("noclick");
-      window.rk = true;
-      try {
-        let postAIResult = document.querySelector(".post-ai-result");
-        postAIResult.textContent = "加载中...";
-        let inputa = document.querySelector("#posts-content").textContent;
-        let inputaHanzi = inputa
-          .replace(/\n/g, "")
-          .replace(/[ ]+/g, " ")
-          .replace(/<pre>[\s\S]*?<\/pre>/g, "")
-          .substring(0, 1800);
-        let toAI = `《${postTile}》，具体内容：${inputaHanzi}`;
-        let encodedToAI = encodeURIComponent(toAI); // 使用encodeURIComponent对字符串进行编码
-        let fetchUrl = `${cfWKUrl}/?q=${encodedToAI}`;
-        const source = new EventSource(fetchUrl);
-        let accumulatedResponse = ""; // 用于累积响应的变量
-        let firstChunkReceived = false; // 标识是否已经接收到第一段流数据
+  const aiButton = document.querySelector(".post-ai");
+  const aiContainer = document.querySelector("#post-ai-result");
+  let dataFetched = false;
 
-        source.onmessage = (event) => {
-          if (!firstChunkReceived) {
-            // 一旦收到第一段数据，清除 '.post-ai-result' 中的“加载中...”
-            postAIResult.textContent = "";
-            firstChunkReceived = true;
-          }
+  function qwenSummary() {
+    const qwenUrl = "https://qwen.hesiy.cn";
+    const postTitle = document.getElementById("title").textContent;
+    const preProcessingContent =
+      document.getElementById("posts-content").textContent;
+    const postContent = preProcessingContent
+      .replace(/\n/g, "")
+      .replace(/[ ]+/g, " ")
+      .replace(/<pre>[\s\S]*?<\/pre>/g, "")
+      .replace(/%/g, "%25")
+      .replace(/\+/g, "%2B") // 将+号转为编码
+      .replace(/\//g, "%2F") // 将/转为编码
+      .replace(/\?/g, "%3F") // 将?转为编码
+      .replace(/#/g, "%23") // 将#转为编码
+      .replace(/&/g, "%26"); // 将&转为编码
 
-          if (event.data === "[DONE]") {
-            // 处理完成前最后一次过滤
-            postAIResult.textContent += accumulatedResponse.replace(
-              /(。)\1+/g,
-              "$1"
-            );
-            accumulatedResponse = ""; // 重置累积响应
-            source.close();
-            postAI.classList.remove("noclick");
-            return;
-          }
+    const encodedPostTitle = encodeURIComponent(`文章标题：${postTitle}`);
+    const encodedPostContent = encodeURIComponent(`，文章内容：${postContent}`);
 
+    const stickUrl = `${qwenUrl}/?q=${encodedPostTitle}${encodedPostContent}`;
+
+    console.log(stickUrl);
+
+    // 获取数据
+    summaryFetch(stickUrl);
+  }
+
+  function summaryFetch(url) {
+    try {
+      const evtSource = new EventSource(url);
+      aiContainer.classList = `post-ai-result`;
+
+      function addCursor() {
+        const cursorSpan = document.createElement("span");
+        cursorSpan.className = "ai-cursor";
+        aiContainer.appendChild(cursorSpan);
+      }
+
+      addCursor();
+
+      evtSource.onmessage = (event) => {
+        // 检测单独的[DONE]消息
+        if (event.data === "[DONE]") {
+          evtSource.close(); // 关闭 EventSource 连接
+          document.querySelector(".ai-cursor")?.remove(); // 移除光标
+        } else {
           try {
             const data = JSON.parse(event.data);
-            accumulatedResponse += data.response; // 累积新的响应
-
-            // 如果现有响应不是以句号结尾，则对累积响应进行过滤，并更新textContent
-            if (!accumulatedResponse.endsWith("。")) {
-              postAIResult.textContent += accumulatedResponse.replace(
-                /(。)\1+/g,
-                "$1"
-              );
-              accumulatedResponse = ""; // 清空累积响应以便下一次消息
-            }
+            const cursor = document.querySelector(".ai-cursor");
+            const newText = document.createTextNode(data.response); // 创建新的文本节点
+            aiContainer.insertBefore(newText, cursor); // 把新数据作为文本节点插入光标之前
           } catch (e) {
             console.error("解析数据时发生错误:", e);
           }
-        };
-      } catch (error) {
-        postAI.classList.remove("noclick");
-        console.log(error);
-      }
-    } else {
-      window.rk = true;
-      postAI.classList.add("noclick");
-      try {
-        let postAIResult = document.querySelector(".post-ai-result");
-        postAIResult.textContent = "加载中";
-        let inputa = document.querySelector("#posts-content").textContent;
-        let inputaHanzi = inputa
-          .replace(/\n/g, "")
-          .replace(/[ ]+/g, " ")
-          .replace(/<pre>[\s\S]*?<\/pre>/g, "")
-          .substring(0, 1800);
-        let toAI = `请你帮我对这篇文章做一个摘要，简述一下文章内容，标题：《${postTile}》，具体内容：${inputaHanzi}`;
-        let encodedToAI = encodeURIComponent(toAI); // 使用encodeURIComponent对字符串进行编码
-        let fetchUrl = `${cfWKUrl}/?q="${encodedToAI}"`;
-        const source = new EventSource(fetchUrl);
-        let accumulatedResponse = ""; // 用于累积响应的变量
-        let firstChunkReceived = false; // 标识是否已经接收到第一段流数据
-
-        source.onmessage = (event) => {
-          if (!firstChunkReceived) {
-            // 一旦收到第一段数据，清除 '.post-ai-result' 中的“加载中...”
-            postAIResult.textContent = "";
-            firstChunkReceived = true;
-          }
-
-          if (event.data === "[DONE]") {
-            // 处理完成前最后一次过滤
-            postAIResult.textContent += accumulatedResponse.replace(
-              /(。)\1+/g,
-              "$1"
-            );
-            accumulatedResponse = ""; // 重置累积响应
-            source.close();
-            postAI.classList.remove("noclick");
-            return;
-          }
-
-          try {
-            const data = JSON.parse(event.data);
-            accumulatedResponse += data.response; // 累积新的响应
-
-            // 如果现有响应不是以句号结尾，则对累积响应进行过滤，并更新textContent
-            if (!accumulatedResponse.endsWith("。")) {
-              postAIResult.textContent += accumulatedResponse.replace(
-                /(。)\1+/g,
-                "$1"
-              );
-              accumulatedResponse = ""; // 清空累积响应以便下一次消息
-            }
-          } catch (e) {
-            console.error("解析数据时发生错误:", e);
-          }
-        };
-      } catch (error) {
-        postAI.classList.remove("noclick");
-        console.log(error);
-      }
+        }
+      };
+    } catch (e) {
+      aiContainer.textContent = `数据获取出错，请重试`;
+      throw e;
     }
   }
 </script>
