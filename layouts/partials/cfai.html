@@ -99,6 +99,8 @@
         aiContainer.appendChild(cursorSpan);
       }
 
+      aiContainer.textContent = ``;
+
       addCursor();
 
       evtSource.onmessage = (event) => {
