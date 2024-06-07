@@ -11,62 +11,67 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "归档"
-  pageRef = "posts"
-  weight = 10
+name = "归档"
+pageRef = "posts"
+weight = 10
 
 [[main]]
-  name = "分类"
-  pageRef = "categories"
-  weight = 20
+name = "分类"
+pageRef = "categories"
+weight = 20
 
 [[main]]
-  name = "标签"
-  pageRef = "tags"
-  weight = 30
+name = "标签"
+pageRef = "tags"
+weight = 30
 
 [[main]]
-  name = "友链"
-  pageRef = "friends"
-  weight = 30
+name = "友链"
+pageRef = "friends"
+weight = 30
 
 [[main]]
-  name = "说说"
-  pageRef = "speak"
-  weight = 30
+name = "说说"
+pageRef = "speak"
+weight = 30
 
 [[main]]
-  name = "关于"
-  pageRef = "about"
-  weight = 40
+name = "关于"
+pageRef = "about"
+weight = 40
 
 [[main]]
-  identifier = "搜索"
-  weight = 99
-  [main.params]
-    action = "search"
+name = "开往"
+url = "https://www.travellings.cn/go.html"
+class="travelling"
+weight = 40
+
+[[main]]
+identifier = "搜索"
+weight = 99
+[main.params]
+action = "search"
 
 # -- Footer Menu --
 # The footer menu is displayed at the bottom of the page, just before
 # the copyright notice. Configure as per the main menu above.
 
- [[footer]]
-   name = "版权声明"
-   pageRef = "copyright"
-   url = "/copyright"
-   weight = 10
- [[footer]]
-   name = "隐私政策"
-   pageRef = "policy"
-   url = "/policy"
-   weight = 10
- [[footer]]
-   name = "网站地图"
-   pageRef = "sitemap.xml"
-   url = "/sitemap.xml"
-   weight = 10
- [[footer]]
-   name = "吐槽日常"
-   pageRef = "https://mo.hesiy.cn"
-   url = "https://mo.hesiy.cn"
-   weight = 10
+[[footer]]
+name = "版权声明"
+pageRef = "copyright"
+url = "/copyright"
+weight = 10
+[[footer]]
+name = "隐私政策"
+pageRef = "policy"
+url = "/policy"
+weight = 10
+[[footer]]
+name = "网站地图"
+pageRef = "sitemap.xml"
+url = "/sitemap.xml"
+weight = 10
+[[footer]]
+name = "吐槽日常"
+url = "https://mo.hesiy.cn"
+weight = 10
