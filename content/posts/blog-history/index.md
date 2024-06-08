@@ -25,6 +25,10 @@ summary: 告别以前，迎接未来
     caption="主题 Demo"
     >}}
 
+你可以从这里观看我的黑历史：[open-super.github.io][10]
+
+{{< heimu >}}当时为了掩盖自己的年龄，我还特别注明了是初三生的博客，其实才小学😅{{</ heimu >}}
+
 后来博客文章慢慢变多，需求也随着扩大，基本的博客功能已经满足不了我了,于是开始了我的第一次换主题之旅
 
 ### 第一次更换主题
@@ -113,6 +117,6 @@ summary: 告别以前，迎接未来
 [7]: https://baoshuo.ren
 [8]: https://gohugo.io
 [9]: https://github.com/jpanther/congo
-
+[10]: https://open-super.github.io/
 
 

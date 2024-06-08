@@ -57,6 +57,10 @@ action = "search"
 # the copyright notice. Configure as per the main menu above.
 
 [[footer]]
+name = "十年之约"
+url = "https://www.foreverblog.cn/"
+weight = 10
+[[footer]]
 name = "版权声明"
 pageRef = "copyright"
 url = "/copyright"
