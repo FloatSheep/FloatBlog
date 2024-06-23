@@ -7,7 +7,7 @@ let isDataFetched = false;
 const NPM_REGISTRY_BASE_URL = "https://registry.npmmirror.com/";
 const packageName = "@floatsheep/fsl-blog"; // 博客包名，根据实际情况替换
 const blogDomain = "blog.hesiy.cn"; // 博客域名，根据实际情况替换
-const localMode = true; // 本地模式标志，设置为true时将忽略域名检查
+const localMode = false; // 本地模式标志，设置为true时将忽略域名检查
 
 const cacheObject = new CacheDB("ServiceStorage", "objectPrefix", { auto: 1 });
 
@@ -23,7 +23,7 @@ async function cacheOperation(newVersion) {
 
   async function checkAndInitializeVersionKey() {
     try {
-      // 明确尝试读取version，期望它抛出错误以表明version不存在
+      // 尝试读取version
       let versionExists = await cacheObject.read("version");
       if (versionExists === null || versionExists === undefined) {
         throw new Error("Version key not found.");
@@ -103,6 +103,7 @@ function getNewestData() {
     .fetch(checkURL)
     .then((response) => response.json())
     .then((data) => checkUpdate(data)) // 将请求返回的数据：data 传给 checkUpdate 函数
+    .then((data) => console.log(data)) // 输出请求内容
     .catch((error) => console.error("Fetch 更新信息失败:", error));
 }
 
