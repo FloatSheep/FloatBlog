@@ -18,7 +18,7 @@ function processFile(filePath) {
   if (path.extname(filePath) === '.html') {
     const dirPath = path.dirname(filePath);
     const fileNameWithoutExt = path.basename(filePath, '.html');
-    const newFilePath = path.join(dirPath, `${fileNameWithoutExt}.html.json`);
+    const newFilePath = path.join(dirPath, `${fileNameWithoutExt}-html.json`);
 
     fs.readFile(filePath, 'utf8', (err, data) => {
       if (err) {
@@ -28,7 +28,7 @@ function processFile(filePath) {
           if (err) {
             console.error(`Writing file: ${newFilePath} had an error: ${err}`);
           } else {
-            console.log(`File: ${fileNameWithoutExt}.html converted to ${fileNameWithoutExt}.html.json`);
+            console.log(`File: ${fileNameWithoutExt}.html converted to ${fileNameWithoutExt}-html.json`);
           }
         });
       }
@@ -41,4 +41,3 @@ const sourceDir = path.join(__dirname, '../../public');
 
 console.log('开始处理...');
 traverseDir(sourceDir, processFile);
-console.log('处理完成！');

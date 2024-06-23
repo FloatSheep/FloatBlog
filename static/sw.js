@@ -7,35 +7,74 @@ let isDataFetched = false;
 const NPM_REGISTRY_BASE_URL = "https://registry.npmmirror.com/";
 const packageName = "@floatsheep/fsl-blog"; // 博客包名，根据实际情况替换
 const blogDomain = "blog.hesiy.cn"; // 博客域名，根据实际情况替换
-const localMode = false; // 本地模式标志，设置为true时将忽略域名检查
+const localMode = true; // 本地模式标志，设置为true时将忽略域名检查
 
 const cacheObject = new CacheDB("ServiceStorage", "objectPrefix", { auto: 1 });
 
-// Cache-DB used
-function cacheOperation(newVersion) {
-  // 防止 Promise 报错，这里可以用一个空的.catch()来捕获可能的错误，并进行适当的处理
-  return cacheObject
-    .read("version")
-    .then((nowVersion) => {
-      let convertVersion = Number(nowVersion.split("-")[1]);
+// Cache-DB used(the result of ai generated)
+async function cacheOperation(newVersion) {
+  async function initializeCacheDB() {
+    try {
+      await cacheObject.write("initCheck", "initialized");
+    } catch (error) {
+      console.error("初始化缓存数据库时发生错误:", error);
+    }
+  }
 
-      if (!convertVersion || convertVersion !== newVersion) {
-        // 如果版本不匹配，则更新版本
-        return cacheObject.write("version", newVersion).then(() => {
-          console.log(`版本已更新：${newVersion}`);
-          return true; // 表示有新的版本更新
-        });
-      } else {
-        // 如果版本匹配，不做任何操作
-        console.log("当前是最新版本");
-        return false; // 表示当前版本已是最新，无需更新
+  async function checkAndInitializeVersionKey() {
+    try {
+      // 明确尝试读取version，期望它抛出错误以表明version不存在
+      let versionExists = await cacheObject.read("version");
+      if (versionExists === null || versionExists === undefined) {
+        throw new Error("Version key not found.");
       }
-    })
-    .catch((error) => {
-      console.error("获取或设置版本信息时出现错误:", error);
-      // 在这里进行错误处理，而不是尝试执行一个可能会失败的操作
-      throw error; // 继续抛出错误，让调用者处理
-    });
+    } catch (error) {
+      console.log("version键不存在，将进行初始化...");
+      try {
+        await cacheObject.write("version", newVersion);
+        console.log("Version 初始化成功。");
+      } catch (err) {
+        console.error("初始化version键时发生错误:", err);
+      }
+    }
+  }
+
+  await initializeCacheDB();
+  await checkAndInitializeVersionKey();
+
+  try {
+    let nowVersionRaw = await cacheObject.read("version");
+    if (nowVersionRaw === null || nowVersionRaw === undefined) {
+      console.error("读取version后仍未能找到该键，这是一个不应该出现的情况。");
+      return false;
+    }
+
+    let nowVersionNum = Number(nowVersionRaw.split("-")[1]);
+    let newVersionNum = Number(newVersion.split("-")[1]);
+
+    if (isNaN(newVersionNum)) {
+      console.error("新版本号格式错误，无法正确转换为数字进行比较。");
+      return false;
+    }
+
+    if (isNaN(nowVersionNum)) {
+      console.log("当前版本信息不完整，将直接设置新版本为初始版本");
+      await cacheObject.write("version", newVersion);
+      return true;
+    }
+
+    if (newVersionNum !== nowVersionNum) {
+      await cacheObject.write("version", newVersion);
+      console.log(`版本已更新：${newVersion}`);
+      return true;
+    } else {
+      console.log("当前是最新版本");
+      return false;
+    }
+  } catch (error) {
+    console.error("在执行 cacheOperation 时发生错误:", error);
+    return false;
+  }
 }
 
 function checkUpdate(data) {
@@ -119,7 +158,15 @@ self.addEventListener("fetch", (event) => {
 
     // 转换 HTML 为数据请求以绕开扩展名限制
     if (relPath.endsWith(".html")) {
-      relPath += ".json";
+      let fileNameWithExt = relPath.split("/").pop(); // 提取文件名包括扩展名
+      let fileNameWithoutExt = fileNameWithExt.slice(
+        0,
+        fileNameWithExt.lastIndexOf(".")
+      ); // 移除扩展名
+      relPath = relPath.replace(
+        fileNameWithExt,
+        `${fileNameWithoutExt}-html.json`
+      ); // 替换为新格式
     }
 
     // 处理版本信息
@@ -215,7 +262,7 @@ function corsResponse(response) {
   const headers = new Headers(response.headers);
 
   // 检查响应URL是否指向.html.json文件
-  const isHtmlJson = response.url.endsWith(".html.json");
+  const isHtmlJson = response.url.endsWith("-html.json");
   if (isHtmlJson) {
     // 如果是.html.json文件，设置Content-Type为text/html
     headers.set("Content-Type", "text/html; charset=utf-8");

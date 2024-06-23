@@ -7,5 +7,5 @@ fs.writeFile('./public/package.json', JSON.stringify(pkgfile), function (err) {
     if (err) {
         console.log(err);
     }
-    console.log("Package.json file is created successfully.");
+    console.log("Package.json file was created successfully.");
 })

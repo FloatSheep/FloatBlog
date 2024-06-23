@@ -15,6 +15,7 @@
 - 使用 [TGTalk][4] 作为说说系统
 - 使用 [Umami][5] 作为数据统计系统
 - 博客使用 Service Worker 和 [NPMMirror][6] 进行访问加速
+- 博客使用通义千问 & ChatGPT-4 Turbo 进行部分代码编写
 - 博客协议采用 [CC BY-NC-SA 4.0][7]
 
 [1]: <https://gohugo.io/>
