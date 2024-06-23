@@ -144,7 +144,7 @@
             </script>
             {{ i18n "footer.powered_by" (dict "Hugo" $hugo "Congo" $congo) | safeHTML }}
           </p>
-          <div>
+          <div class="timeContainer">
             <span id="timeDate" class="text-xs text-neutral-500 dark:text-neutral-400">锟斤拷</span><span id="times" class="text-xs text-neutral-500 dark:text-neutral-400">锟斤拷</span>
             <script>
                 var now = new Date();
@@ -166,7 +166,7 @@
             
         {{ end }}
       </div>
-      <button onclick="window.fm.refresh()" id="refresh-switcher" type="button" aria-label="Service Worker refresh controller">
+      <button id="refreshContainer" onclick="window.fm.refresh()" id="refresh-switcher" type="button" aria-label="Service Worker refresh controller">
         <div
           class="flex h-12 w-12 items-center justify-center dark:hidden"
           title="Refresh Service Worker"

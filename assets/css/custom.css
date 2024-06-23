@@ -470,3 +470,13 @@ html {
       opacity: 1;
   }
 }
+
+#refreshContainer, .timeContainer {
+  display: none;
+}
+
+@media screen and (min-width: 550px) {
+  #refreshContainer, .timeContainer {
+      display: inline;
+  }
+}

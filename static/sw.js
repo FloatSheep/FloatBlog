@@ -13,32 +13,28 @@ const cacheObject = new CacheDB("ServiceStorage", "objectPrefix", { auto: 1 });
 
 // Cache-DB used
 function cacheOperation(newVersion) {
-  // 防止 Promise 报错
-  cacheObject.write("version");
-  // 定义 cacheOperation 函数
+  // 防止 Promise 报错，这里可以用一个空的.catch()来捕获可能的错误，并进行适当的处理
   return cacheObject
     .read("version")
     .then((nowVersion) => {
-      // 转换将 cache-DB 存储的版本号（Type: String）转换成数字类型
-      convertVersion = nowVersion.split("-").map((num) => {
-        return Number(num);
-      })[1];
-      // 通过 cache-DB 操作 cacheDB
+      let convertVersion = Number(nowVersion.split("-")[1]);
+
       if (!convertVersion || convertVersion !== newVersion) {
-        // 条件判断 最新版本不存在 & 当前版本不等于传入参数：newVersion
-        return cacheObject.write("version", newVersion).then((fallback) => {
-          // 调用 cache-DB 更新 cacheDB 中的值并回调
-          console.log(`版本已更新：${newVersion}, 回调：${fallback}`);
+        // 如果版本不匹配，则更新版本
+        return cacheObject.write("version", newVersion).then(() => {
+          console.log(`版本已更新：${newVersion}`);
           return true; // 表示有新的版本更新
         });
       } else {
+        // 如果版本匹配，不做任何操作
         console.log("当前是最新版本");
         return false; // 表示当前版本已是最新，无需更新
       }
     })
     .catch((error) => {
       console.error("获取或设置版本信息时出现错误:", error);
-      throw error; // 抛出错误
+      // 在这里进行错误处理，而不是尝试执行一个可能会失败的操作
+      throw error; // 继续抛出错误，让调用者处理
     });
 }
 
@@ -121,6 +117,11 @@ self.addEventListener("fetch", (event) => {
       relPath += "index.html";
     }
 
+    // 转换 HTML 为数据请求以绕开扩展名限制
+    if (relPath.endsWith(".html")) {
+      relPath += ".json";
+    }
+
     // 处理版本信息
     cacheObject
       .read("version")
@@ -167,7 +168,7 @@ self.addEventListener("fetch", (event) => {
               console.log("原始请求失败，返回404页面：", error.message);
               // 返回404页面
               return fetch(
-                `${NPM_REGISTRY_BASE_URL}${packageName}/${blogVersion}/files/404.html`
+                `${NPM_REGISTRY_BASE_URL}${packageName}/${blogVersion}/files/404.html.json`
               ).then((response) => corsResponse(response));
             });
         })
@@ -212,6 +213,14 @@ self.addEventListener("message", (event) => {
 // 处理CORS的函数
 function corsResponse(response) {
   const headers = new Headers(response.headers);
+
+  // 检查响应URL是否指向.html.json文件
+  const isHtmlJson = response.url.endsWith(".html.json");
+  if (isHtmlJson) {
+    // 如果是.html.json文件，设置Content-Type为text/html
+    headers.set("Content-Type", "text/html; charset=utf-8");
+  }
+  // 跨域
   headers.set("Access-Control-Allow-Origin", "*");
   headers.set("Access-Control-Allow-Methods", "GET, HEAD, POST, OPTIONS");
   headers.set("Access-Control-Allow-Headers", "Content-Type");

@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", function() {
   const pluginEnable = [
-    new EmojiReplacer(true),
-    new mokerConsole(true),
+    new EmojiReplacer(false),
+    new mokerConsole(false),
     new messageBar(),
   ];
 
