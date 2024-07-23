@@ -18,6 +18,14 @@
 - 博客使用通义千问 & ChatGPT-4 Turbo 进行部分代码编写
 - 博客协议采用 [CC BY-NC-SA 4.0][7]
 
+# Scripts
+
+- 使用 fileExtened 脚本对静态文件进行处理
+- 使用 pkgUpdate 脚本对 package.json 文件进行处理
+- 使用 sitemapCommit 脚本提交 sitemap 给百度站长
+
+sitemapCommit 使用 webpack 打包，已被 webpack 混淆
+
 [1]: <https://gohugo.io/>
 [2]: <https://github.com/jpanther/congo>
 [3]: <https://waline.js.org/>

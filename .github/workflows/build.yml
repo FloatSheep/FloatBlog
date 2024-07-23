@@ -33,6 +33,10 @@ jobs:
         run: |
           hugo
 
+      - name: Commit sitemap to Baidu
+        run: |
+          node ./scripts/after/sitemapCommit "./public" "${{ secrets.BAIDU_ZZT_URL }}"
+
       - name: Static Files Pre Set
         run: |
           node ./scripts/after/fileExtened
