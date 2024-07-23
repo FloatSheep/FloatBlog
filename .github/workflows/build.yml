@@ -47,7 +47,7 @@ jobs:
 
       - name: NPM Publish
         run: |
-          npm config set _auth=${{ secrets.NPM_T }}
+          npm config set _authToken=${{ secrets.NPM_T }}
           npm config fix
           cd ./public
           ls
