@@ -35,7 +35,7 @@ jobs:
 
       - name: Commit sitemap to Baidu
         run: |
-          node ./scripts/after/sitemapCommit "./public" "${{ secrets.BAIDU_ZZT_URL }}"
+          node ./scripts/after/sitemapCommit "./public/sitemap.xml" "${{ secrets.BAIDU_ZZT_URL }}"
 
       - name: Static Files Pre Set
         run: |
