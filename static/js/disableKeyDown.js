@@ -7,17 +7,9 @@ const changeSearchAttr = () => {
   searchInput.setAttribute("autocomplete", "off");
 };
 
-const notHaveSearching = () => {
-  const searchWrapper = document.getElementById("search-wrapper");
-
-  searchWrapper.style = "visibility: hidden; display: none;";
-};
-
 window.addEventListener("DOMContentLoaded", () => {
-  changeSearchAttr();
   document.addEventListener("keydown", function (e) {
     if (e.key === "/") {
-      /* notHaveSearching(); */
       hideSearch();
       if (!searchVisible) {
         e.preventDefault();
@@ -44,4 +36,5 @@ window.addEventListener("DOMContentLoaded", () => {
       }
     }
   });
+  changeSearchAttr();
 });
