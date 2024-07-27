@@ -60,22 +60,21 @@ action = "search"
 name = "十年之约"
 url = "https://www.foreverblog.cn/"
 weight = 10
+
 [[footer]]
 name = "版权声明"
 pageRef = "copyright"
 url = "/copyright"
 weight = 10
+
 [[footer]]
 name = "隐私政策"
 pageRef = "policy"
 url = "/policy"
 weight = 10
+
 [[footer]]
 name = "网站地图"
 pageRef = "sitemap.xml"
 url = "/sitemap.xml"
-weight = 10
-[[footer]]
-name = "吐槽日常"
-url = "https://mo.hesiy.cn"
 weight = 10

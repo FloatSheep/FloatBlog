@@ -32,9 +32,16 @@ xml: false
 ```yaml
 - nickname: FloatSheep
   url: https://blog.hesiy.cn
-  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.9/files/avatar.webp
+  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.23/files/avatar%202024.main.webp
   description: On the other side of obstacles
 ```
+
+对于 `avatar`，我提供以下版本：
+
+- [原版本](https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.23/files/avatar%202024.black.webp)
+- [白色背景版](https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.23/files/avatar%202024.wb.webp)
+
+如果需要 Dark version，可以通过 CSS 来处理 `filter: invert(1) hue-rotate(180deg);`
 
 在评论区用 `YAML` 格式留下你的信息即可
 

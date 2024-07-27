@@ -1,3 +1,5 @@
+<center><img width="300px" height="300px" src="https://telegraph-image.pages.dev/file/1f5d17b6c98d5c1855ed4.png"></center>
+
 <h1 align="center">FloatSheep's Blog</h1>
 
 <div align="center">
@@ -23,8 +25,6 @@
 - 使用 fileExtened 脚本对静态文件进行处理
 - 使用 pkgUpdate 脚本对 package.json 文件进行处理
 - 使用 sitemapCommit 脚本提交 sitemap 给百度站长
-
-sitemapCommit 使用 webpack 打包，已被 webpack 混淆
 
 [1]: <https://gohugo.io/>
 [2]: <https://github.com/jpanther/congo>

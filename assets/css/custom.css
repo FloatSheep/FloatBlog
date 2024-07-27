@@ -480,3 +480,7 @@ html {
       display: inline;
   }
 }
+
+html.dark picture.mb-2.h-auto.w-36.rounded-full {
+  filter: invert(1) hue-rotate(180deg);
+}
