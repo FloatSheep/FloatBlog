@@ -24,7 +24,7 @@ fingerprintAlgorithm = "sha256"
    headline = "☁ Float, Float and Float~"
    bio = "On the other side of obstacles"
    links = [
-     { email = "mailto:sheep@hesiy.cn" },
+     { email = "mailto:admin@hesiy.cn" },
      { link = "https://hesiy.cn/" },
   #   { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
   #   { apple = "https://www.apple.com" },
@@ -32,17 +32,18 @@ fingerprintAlgorithm = "sha256"
   #   { codepen = "https://codepen.io/username" },
   #   { dev = "https://dev.to/username" },
   #   { dribbble = "https://dribbble.com/username" },
-     { facebook = "https://www.facebook.com/hajeekn" },
+  #   { facebook = "https://www.facebook.com/hajeekn" },
   #   { flickr = "https://www.flickr.com/photos/username/" },
   #   { foursquare = "https://foursquare.com/username" },
      { github = "https://github.com/FloatSheep" },
-     { gitlab = "https://gitlab.com/Iam-Hajeekn" },
+  #   { gitlab = "https://gitlab.com/Iam-Hajeekn" },
   #   { google = "https://www.google.com/" },
   #   { hashnode = "https://username.hashnode.dev" },
   #   { instagram = "https://instagram.com/username" },
     # { keybase = "https://keybase.io/username" },
   #   { kickstarter = "https://www.kickstarter.com/profile/username" },
-  #   { lastfm = "https://lastfm.com/user/username" },
+     { neteasemusic = "https://music.163.com/#/user/home?id=1431228228" },
+     { lastfm = "https://lastfm.com/user/FloatSheep" },
   #   { linkedin = "https://linkedin.com/in/username" },
   #   { mastodon = "https://mastodon.instance/@username" },
   #   { medium = "https://medium.com/username" },
@@ -80,7 +81,7 @@ fingerprintAlgorithm = "sha256"
 
 [homepage]
   layout = "profile" # valid options: page, profile, custom
-  showRecent = false
+  showRecent = true
   recentLimit = 5
 
 [article]
