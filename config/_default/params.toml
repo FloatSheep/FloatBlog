@@ -19,13 +19,13 @@ enableQuicklink = true
 fingerprintAlgorithm = "sha256"
 
 [author]
-   name = "FloatSheep"
-   image = "avatar.webp"
-   headline = "☁ Float, Float and Float~"
-   bio = "On the other side of obstacles"
-   links = [
-     { email = "mailto:admin@hesiy.cn" },
-     { link = "https://hesiy.cn/" },
+name = "FloatSheep"
+image = "avatar.webp"
+headline = "☁ Float, Float and Float~"
+bio = "On the other side of obstacles"
+links = [
+  { email = "mailto:admin@hesiy.cn" },
+  { link = "https://hesiy.cn/" },
   #   { amazon = "https://www.amazon.com/hz/wishlist/ls/wishlist-id" },
   #   { apple = "https://www.apple.com" },
   #   { blogger = "https://username.blogspot.com/" },
@@ -35,15 +35,15 @@ fingerprintAlgorithm = "sha256"
   #   { facebook = "https://www.facebook.com/hajeekn" },
   #   { flickr = "https://www.flickr.com/photos/username/" },
   #   { foursquare = "https://foursquare.com/username" },
-     { github = "https://github.com/FloatSheep" },
+  { github = "https://github.com/FloatSheep" },
   #   { gitlab = "https://gitlab.com/Iam-Hajeekn" },
   #   { google = "https://www.google.com/" },
   #   { hashnode = "https://username.hashnode.dev" },
   #   { instagram = "https://instagram.com/username" },
-    # { keybase = "https://keybase.io/username" },
+  # { keybase = "https://keybase.io/username" },
   #   { kickstarter = "https://www.kickstarter.com/profile/username" },
-     { neteasemusic = "https://music.163.com/#/user/home?id=1431228228" },
-     { lastfm = "https://lastfm.com/user/FloatSheep" },
+  { neteasemusic = "https://music.163.com/#/user/home?id=1431228228" },
+  { lastfm = "https://lastfm.com/user/FloatSheep" },
   #   { linkedin = "https://linkedin.com/in/username" },
   #   { mastodon = "https://mastodon.instance/@username" },
   #   { medium = "https://medium.com/username" },
@@ -65,43 +65,44 @@ fingerprintAlgorithm = "sha256"
   #   { twitter = "https://twitter.com/username" },
   #   { whatsapp = "https://wa.me/phone-number" },
   #   { youtube = "https://youtube.com/username" },
-   ]
+  { bilibili = "https://space.bilibili.com/384597455" },
+]
 
 [header]
-  layout = "custom" # valid options: basic, hamburger, hybrid, custom
-  # logo = "avatar.webp"
-  # logoDark = "img/dark-logo.jpg"
-  showTitle = true
+layout = "custom" # valid options: basic, hamburger, hybrid, custom
+# logo = "avatar.webp"
+# logoDark = "img/dark-logo.jpg"
+showTitle = true
 
 [footer]
-  showCopyright = true
-  showThemeAttribution = true
-  showAppearanceSwitcher = true
-  showScrollToTop = false
+showCopyright = true
+showThemeAttribution = true
+showAppearanceSwitcher = true
+showScrollToTop = false
 
 [homepage]
-  layout = "profile" # valid options: page, profile, custom
-  showRecent = true
-  recentLimit = 5
+layout = "profile" # valid options: page, profile, custom
+showRecent = true
+recentLimit = 5
 
 [article]
-  showDate = true
-  showDateUpdated = true
-  showAuthor = true
-  showBreadcrumbs = true
-  showDraftLabel = true
-  showEdit = false
-  # editURL = "https://github.com/username/repo/"
-  editAppendPath = true
-  showHeadingAnchors = true
-  showPagination = true
-  invertPagination = false
-  showReadingTime = true
-  showTableOfContents = true
-  showTaxonomies = true
-  showWordCount = true
-  showComments = true
-  # sharingLinks = ["facebook", "twitter", "mastodon", "pinterest", "reddit", "linkedin", "email"]
+showDate = true
+showDateUpdated = true
+showAuthor = true
+showBreadcrumbs = true
+showDraftLabel = true
+showEdit = false
+# editURL = "https://github.com/username/repo/"
+editAppendPath = true
+showHeadingAnchors = true
+showPagination = true
+invertPagination = false
+showReadingTime = true
+showTableOfContents = true
+showTaxonomies = true
+showWordCount = true
+showComments = true
+# sharingLinks = ["facebook", "twitter", "mastodon", "pinterest", "reddit", "linkedin", "email"]
 
 [word_count]
 one = "{{ .Count }} 字"
@@ -109,25 +110,25 @@ other = "{{ .Count }} 字"
 
 
 [list]
-  showBreadcrumbs = true
-  showSummary = false
-  showTableOfContents = true
-  showTaxonomies = false
-  groupByYear = true
-  paginationWidth = 1
+showBreadcrumbs = true
+showSummary = false
+showTableOfContents = true
+showTaxonomies = false
+groupByYear = true
+paginationWidth = 1
 
 [sitemap]
-  excludedKinds = ["taxonomy", "term"]
+excludedKinds = ["taxonomy", "term"]
 
 [taxonomy]
-  showTermCount = true
+showTermCount = true
 
 [fathomAnalytics]
-  # site = "ABC12345"
-  # domain = "llama.yoursite.com"
+# site = "ABC12345"
+# domain = "llama.yoursite.com"
 
 [verification]
-  # google = ""
-  # bing = ""
-  # pinterest = ""
-  # yandex = ""
+# google = ""
+# bing = ""
+# pinterest = ""
+# yandex = ""
