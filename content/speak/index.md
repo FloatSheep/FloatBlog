@@ -26,7 +26,8 @@ xml: false
 {{<rawhtml>}}
 
 <script>
-const talker = new tgTalker({
+(function () {
+  const talker = new tgTalker({
   serverUrl: "https://tgtalk-api.hesiy.cn/",
   selector: "#iTalk",
   zoom: true,
@@ -46,6 +47,7 @@ const talker = new tgTalker({
   },
 });
   talker.init()
+})();
 </script>
 
 {{</rawhtml>}}
