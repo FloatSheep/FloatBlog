@@ -4,12 +4,12 @@ slug: "xiaomi-router-advanced-usage"
 date: 2024-08-13T20:11:47+08:00
 cover: cover.svg
 thumbnail: cover.svg
-draft: true
-categories: "router"
+draft: false
+categories: "docker"
 tags: ["router"]
 gemini: true
 showSummary: true
-summary: 小米路由器的一些高级玩法
+summary: 发现了一些很新奇的东西（？
 ---
 
 最近折腾 AX9000 的时候发现了一些奇奇怪怪的玩法，记录一下
@@ -49,9 +49,11 @@ SSH 密码可以在 https://miwifi.dev/ssh 进行计算
 
 使用 root 连接路由器后，进入 `/www`，此处存放着小米路由器后台管理界面的 HTML 文件，我们可以下载下来在本地美化后上传
 
-![image-20240814133505984](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20240814133505984.png)
+![image-20240814133505984](https://7.isyangs.cn/55/66bd92775278e-55.png)
 
-![image-20240814133539171](C:/Users/ASUS/AppData/Roaming/Typora/typora-user-images/image-20240814133539171.png)
+![image-20240814133539171](https://7.isyangs.cn/55/66bd9280a4396-55.png)
+
+
 
 [1]: <https://www.right.com.cn/forum/thread-8348455-1-1.html>
 [2]: <https://gist.github.com/FloatSheep/018506818ec01cc840dd7ab45fe4abd9>
