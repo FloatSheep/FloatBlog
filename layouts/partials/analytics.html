@@ -38,58 +38,25 @@
       };
     } */
 
-    window.noHover = true;
-
-    function removeEffect(element) {
-      element.classList.remove("fadeout");
-    }
-
-    function addFadein(element) {
-      if (element) {
-        if (!element.classList.contains("fadeout")) {
-          element.classList.add("fadein");
-        } else {
-          element.addEventListener("transitionend", () => {
-            if (window.noHover) {
-              element.classList.remove("fadein");
-              element.classList.add("fadeout");
-            }
-          });
-          element.classList.remove("fadeout");
-          element.classList.add("fadein");
-        }
-      }
-    }
-
-    const mapElement = document.getElementById("pagemap");
-    if (mapElement) {
-      // 监听鼠标悬停状态
-      mapElement.addEventListener("mouseenter", () => {
-        window.noHover = false;
+    if (document.querySelector("#pagemap")) {
+      document.querySelector("#pagemap").addEventListener("mouseover", () => {
+        document.querySelector("#pagemap").classList.remove("fadeout");
+        document.querySelector("#pagemap").classList.add("fadein");
       });
-      mapElement.addEventListener("mouseleave", () => {
-        window.noHover = true;
+      document.querySelector("#pagemap").addEventListener("mouseout", () => {
+        document.querySelector("#pagemap").classList.remove("fadein");
+        document.querySelector("#pagemap").classList.add("fadeout");
       });
-
-      // 监听滚动事件
-      addEventListener("scroll", () => {
-        // 如果鼠标不在pagemap上，就添加fadein效果
-        if (window.noHover) {
-          addFadein(mapElement);
-        }
-      });
-
-      // 监听自定义的插件事件
-      addEventListener("scrollend", () => {
-        if (window.noHover) {
-          setTimeout(() => {
-            mapElement.classList.remove("fadein");
-            mapElement.classList.add("fadeout");
-            setTimeout(() => {
-              removeEffect(mapElement);
-            }, 800);
-          }, 800);
-        }
+      let map = document.querySelector("#pagemap");
+      let mapTimeout = null;
+      document.addEventListener("scroll", () => {
+        map.classList.remove("fadeout");
+        map.classList.add("fadein");
+        if (mapTimeout) clearTimeout(mapTimeout);
+        mapTimeout = setTimeout(() => {
+          map.classList.remove("fadein");
+          map.classList.add("fadeout");
+        }, 1000);
       });
     }
   });
@@ -107,3 +74,9 @@
 <link rel="stylesheet" href="/js/snackbar/snackbar.min.css" />
 <script src="/js/switch-day-night.js"></script>
 <script src="/js/pagemap.js"></script>
+<link
+  rel="preload"
+  href="https://mirrors.sustech.edu.cn/cdnjs/ajax/libs/lxgw-wenkai-screen-webfont/1.7.0/lxgwwenkaiscreen.css"
+  as="style"
+  onload="this.rel='stylesheet'"
+/>
