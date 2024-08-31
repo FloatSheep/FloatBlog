@@ -1,6 +1,6 @@
 <div id="summary-wrapper">
   <div id="title">
-    <span class="name">
+    <span id="summary-post" class="name">
       <span class="icon-robot"> {{ partial "icon.html" "robot" }} </span>
       <span class="text"> 文章摘要 </span>
       <span class="icon-up">{{ partial "icon.html" "up" }}</span>
@@ -13,7 +13,9 @@
     </span>
   </div>
   <div id="meta">
-    <span class="tip">此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</span>
+    <span class="tip"
+      >此内容根据文章生成，并经过人工审核，仅用于文章内容的解释与总结</span
+    >
     <a class="report" href="mailto:admin@hesiy.cn">投诉</a>
   </div>
 </div>
@@ -24,9 +26,10 @@
     const outputCursor = document.getElementById("post-ai-result-text");
     const loadingText = document.getElementById("result-loading");
     const aiLogoCursor = document.getElementById("ai-logo");
+    const postTitleCursor = document.getElementById("summary-post");
 
     // 获取 postId 和 content
-    const url = new URL(window.location.href);
+    const url = new URL(location.href);
     const postId = url.pathname
       .split("/")
       .filter((e) => e !== "")
@@ -126,11 +129,13 @@
                 }
               })
               .catch((error) => {
+                outputCursor.textContent = `${error}`;
                 console.error("Fetch error:", error);
               });
           }
         })
         .catch((error) => {
+          outputCursor.textContent = `${error}`;
           console.error("Fetch error:", error);
         });
     };
@@ -157,7 +162,9 @@
           outputCursor.textContent = ``;
 
           addCursor();
-          typeWriter(index, text);
+          setTimeout(() => {
+            typeWriter(index, text);
+          }, 1000);
         } else {
           if (summaryData !== undefined) {
             shouldDisable = true;
@@ -172,6 +179,10 @@
           }
         }
       }
+    });
+
+    postTitleCursor.addEventListener("click", () => {
+      location.href = `/posts/qwen-summary`;
     });
   });
 </script>
