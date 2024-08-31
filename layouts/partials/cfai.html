@@ -1,127 +1,174 @@
-<div class="post-ai" onclick="qwenSummary()">
-  <img alt="Static Badge" src="/cfai.svg" />
+<div id="summary-wrapper">
+  <div id="title">
+    <span class="name">
+      <span class="icon-robot"> {{ partial "icon.html" "robot" }} </span>
+      <span class="text"> 文章摘要 </span>
+      <span class="icon-up">{{ partial "icon.html" "up" }}</span>
+    </span>
+    <span id="ai-logo" class="logo"> QwenGPT </span>
+  </div>
+  <div id="post-ai-result" class="post-ai-result">
+    <span id="post-ai-result-text" lass="text">
+      <span id="result-loading">加载中...</span>
+    </span>
+  </div>
+  <div id="meta"></div>
 </div>
-<div id="post-ai-result" class="post-ai-result none-show"></div>
-<style>
-  @keyframes spin {
-    from {
-      transform: rotate(0deg);
-    }
-    to {
-      transform: rotate(360deg);
-    }
-  }
-  .post-ai-result svg {
-    animation: spin 1s infinite linear;
-  }
-  .post-ai-result {
-    box-shadow: rgba(0, 0, 0, 0.05) 0 0 0 1px;
-    background-color: #f7f7f914;
-    border-radius: 6px;
-    padding: 0.5rem 1rem;
-    margin-bottom: .9rem;
-    min-height: 3rem;
-    max-width: 41rem;
-  }
-  .none-show {
-    display: none;
-  }
-  .post-ai {
-    margin-bottom: 1rem;
-  }
-  .ai-cursor {
-    display: inline-block;
-    width: 7px;
-    background: #333;
-    height: 16px;
-    margin-bottom: -2px;
-    opacity: 0.95;
-    margin-left: 3px;
-    -webkit-transition: all 0.3s;
-    -moz-transition: all 0.3s;
-    -o-transition: all 0.3s;
-    -ms-transition: all 0.3s;
-    transition: all 0.3s;
-    animation: blink 1s infinite;
-  }
-  @keyframes blink {
-    0%,
-    50%,
-    100% {
-      opacity: 1;
-    }
-    25%,
-    75% {
-      opacity: 0;
-    }
-  }
-</style>
 <script>
-  const aiButton = document.querySelector(".post-ai");
-  const aiContainer = document.querySelector("#post-ai-result");
-  let dataFetched = false;
+  addEventListener("DOMContentLoaded", () => {
+    const backendUrl = "https://fake-gpt.hesiy.cn";
+    const contentCursor = document.getElementById("posts-content");
+    const outputCursor = document.getElementById("post-ai-result-text");
+    const loadingText = document.getElementById("result-loading");
+    const aiLogoCursor = document.getElementById("ai-logo");
 
-  function qwenSummary() {
-    const qwenUrl = "https://qwen.hesiy.cn";
-    const postTitle = document.getElementById("title").textContent;
-    const preProcessingContent =
-      document.getElementById("posts-content").textContent;
-    const postContent = preProcessingContent
-      .replace(/\n/g, "")
-      .replace(/[ ]+/g, " ")
-      .replace(/<pre>[\s\S]*?<\/pre>/g, "")
-      .replace(/%/g, "%25")
-      .replace(/\+/g, "%2B") // 将+号转为编码
-      .replace(/\//g, "%2F") // 将/转为编码
-      .replace(/\?/g, "%3F") // 将?转为编码
-      .replace(/#/g, "%23") // 将#转为编码
-      .replace(/&/g, "%26"); // 将&转为编码
+    // 获取 postId 和 content
+    const url = new URL(window.location.href);
+    const postId = url.pathname
+      .split("/")
+      .filter((e) => e !== "")
+      .pop();
+    const content = contentCursor.textContent;
 
-    const encodedPostTitle = encodeURIComponent(`文章标题：${postTitle}`);
-    const encodedPostContent = encodeURIComponent(`，文章内容：${postContent}`);
+    // 处理 backendUrl 可能以 / 结尾的情况
+    const apiUrl = backendUrl.endsWith("/")
+      ? `${backendUrl}api/summary`
+      : `${backendUrl}/api/summary`;
 
-    const stickUrl = `${qwenUrl}/?q=${encodedPostTitle}${encodedPostContent}`;
+    // 构建请求体
+    const requestBody = {
+      postId: postId,
+      content: content,
+    };
 
-    console.log(stickUrl);
+    // 光标效果
+    const addCursor = () => {
+      const cursorSpan = document.createElement("span");
+      cursorSpan.className = "ai-cursor";
+      outputCursor.appendChild(cursorSpan);
+    };
 
-    // 获取数据
-    summaryFetch(stickUrl);
-  }
+    // 插入光标
+    addCursor();
 
-  function summaryFetch(url) {
-    try {
-      const evtSource = new EventSource(url);
-      aiContainer.classList = `post-ai-result`;
+    // 打字效果
+    let typingTimeout;
+    let shouldDisable = false;
 
-      function addCursor() {
-        const cursorSpan = document.createElement("span");
-        cursorSpan.className = "ai-cursor";
-        aiContainer.appendChild(cursorSpan);
+    const typeWriter = (index, text) => {
+      if (loadingText) {
+        loadingText.remove();
       }
+      aiLogoCursor.classList.add("typing");
+      if (index < text.length) {
+        // 在光标前面插入文本
+        const cursor = document.querySelector(".ai-cursor");
+        cursor.insertAdjacentText("beforebegin", text.charAt(index));
 
-      aiContainer.textContent = ``;
+        index++;
 
-      addCursor();
+        typingTimeout = setTimeout(() => typeWriter(index, text), 80); // 调整打字速度
+      } else {
+        aiLogoCursor.classList.remove("typing");
+        document.querySelector(".ai-cursor")?.remove(); // 移除光标
 
-      evtSource.onmessage = (event) => {
-        // 检测单独的[DONE]消息
-        if (event.data === "[DONE]") {
-          evtSource.close(); // 关闭 EventSource 连接
-          document.querySelector(".ai-cursor")?.remove(); // 移除光标
+        shouldDisable = false;
+      }
+    };
+
+    // 摘要输入
+    const inputSummary = (data) => {
+      const outputElement = outputCursor;
+      const text = data;
+      let index = 0;
+      shouldDisable = true;
+
+      clearTimeout(typingTimeout);
+      typeWriter(index, text);
+    };
+
+    // 发送 GET 请求，获得摘要状态
+    let summaryData = undefined;
+
+    const fetchSummary = () => {
+      fetch(`${apiUrl}?postId=${postId}`, {
+        method: "GET",
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.isSave) {
+            // 存入摘要
+            summaryData = data.data;
+            // 成功，模拟打字效果
+            inputSummary(data.data);
+          } else {
+            // 如果 isSave 为 false，发送 POST 请求
+            fetch(apiUrl, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(requestBody),
+            })
+              .then((response) => response.json())
+              .then((data) => {
+                if (data.code === 1) {
+                  // 存入摘要
+                  summaryData = data.data;
+                  // 成功，模拟打字效果
+                  inputSummary(data.data);
+                } else {
+                  // 客户端错误，输出响应内容
+                  console.error("Error:", data);
+                }
+              })
+              .catch((error) => {
+                console.error("Fetch error:", error);
+              });
+          }
+        })
+        .catch((error) => {
+          console.error("Fetch error:", error);
+        });
+    };
+
+    // 发送请求
+    fetchSummary();
+
+    // 监听 Logo 点击事件
+    let switchMode = false;
+
+    aiLogoCursor.addEventListener("click", () => {
+      if (!shouldDisable) {
+        if (!switchMode) {
+          // 介绍模式
+          let index = 0;
+          const text =
+            "我是浮杨开发的摘要生成助理 QwenGPT，如你所见，这是一个使用 Qwen 14B 作为生成模型的工具。我在这里只负责显示，并仿照 GPT 的形式输出，如果你像我一样讨厌 Cloudflare Worker 的速度，又囊中羞涩，你也可以像我这样做，当然，你也可以使用 Tianli 开发的 TianliGPT 来更简单的实现 AI 摘要。当然，我的样式与代码很大一部分来自于無名大佬，感谢他的帮助！";
+
+          shouldDisable = true;
+          switchMode = true;
+
+          clearTimeout(typingTimeout);
+
+          outputCursor.textContent = ``;
+
+          addCursor();
+          typeWriter(index, text);
         } else {
-          try {
-            const data = JSON.parse(event.data);
-            const cursor = document.querySelector(".ai-cursor");
-            const newText = document.createTextNode(data.response); // 创建新的文本节点
-            aiContainer.insertBefore(newText, cursor); // 把新数据作为文本节点插入光标之前
-          } catch (e) {
-            console.error("解析数据时发生错误:", e);
+          if (summaryData !== undefined) {
+            shouldDisable = true;
+            switchMode = false;
+
+            clearTimeout(typingTimeout);
+
+            outputCursor.textContent = ``;
+
+            addCursor();
+            inputSummary(summaryData);
           }
         }
-      };
-    } catch (e) {
-      aiContainer.textContent = `数据获取出错，请重试`;
-      throw e;
-    }
-  }
+      }
+    });
+  });
 </script>

@@ -7,16 +7,16 @@
       {{ if .Params.showBreadcrumbs | default (.Site.Params.article.showBreadcrumbs | default false) }}
         {{ partial "breadcrumbs.html" . }}
       {{ end }}
-      <h1 id="title" class="mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
+      <h1 id="title" class="mb-8 mt-0 text-4xl font-extrabold text-neutral-900 dark:text-neutral">
         {{ .Title | emojify }}
       </h1>
-      <div class="mt-8 mb-12 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+      <div class="mb-10 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
         {{ partial "article-meta.html" (dict "context" . "scope" "single") }}
       </div>
       {{ with $feature }}
         <div class="prose">
           <img
-            class="mb-6 -mt-4 rounded-md"
+            class="mb-6 rounded-md"
             {{ if eq .MediaType.SubType "svg" }}
               src="{{ .RelPermalink }}"
             {{ else }}
@@ -49,7 +49,7 @@
     <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
       {{ if and (.Params.showTableOfContents | default (.Site.Params.article.showTableOfContents | default false)) (in .TableOfContents "<ul") }}
         <div class="order-first px-0 lg:order-last lg:max-w-xs lg:ps-8">
-          <div class="toc pe-5 print:hidden lg:sticky lg:top-10">
+          <div class="toc pe-5 lg:sticky lg:top-10 print:hidden">
             {{ partial "toc.html" . }}
           </div>
         </div>

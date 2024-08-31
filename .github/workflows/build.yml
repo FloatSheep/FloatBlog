@@ -31,7 +31,7 @@ jobs:
 
       - name: Generate Hugo
         run: |
-          hugo
+          hugo --minify
 
       - name: Commit sitemap to Baidu
         run: |
