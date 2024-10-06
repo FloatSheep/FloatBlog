@@ -15,8 +15,8 @@ jobs:
 
       - name : Prepare NodePack
         run: |
-          pnpm add cnpm --global
-          pnpm install
+          npm add cnpm --global
+          npm install
 
       - name: Cache node modules
         uses: actions/cache@v1
