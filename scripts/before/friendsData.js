@@ -34,6 +34,8 @@ const params = {
   Bucket: "republic",
   Key: "friendsList.json",
   Body: eventualData,
+  ContentType: "text/plain; charset=utf-8",
+  ContentEncoding: "utf-8",
 };
 
 s3.upload(params, function (err, data) {
