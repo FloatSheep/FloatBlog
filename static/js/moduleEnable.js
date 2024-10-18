@@ -1,14 +1,10 @@
 document.addEventListener("DOMContentLoaded", function() {
   const pluginEnable = [
-    new EmojiReplacer(false),
     new mokerConsole(false),
     new messageBar(),
   ];
 
   pluginEnable.forEach(function(plugin) {
-    if (plugin instanceof EmojiReplacer) {
-      document.emojiReplacer = plugin;
-    }
     if (plugin instanceof mokerConsole) {
       document.mC = plugin;
     }

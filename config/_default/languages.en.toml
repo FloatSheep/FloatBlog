@@ -3,7 +3,7 @@ languageName = "English"
 weight = 1
 
 title = "FloatSheep's Blog"
- copyright = "© 2023 FloatSheep{{< emoji id=\"footer-emoji\" data=\"thinking_face_color\" />}} <br /> 全站约 {{< wordCount \"all\" >}}"
+ copyright = "© 2023 FloatSheep🤔 <br /> 全站约 {{< wordCount \"all\" >}}"
 
 [params]
   isoCode = "us"

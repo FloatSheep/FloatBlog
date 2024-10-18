@@ -20,6 +20,9 @@ const eventualData = JSON.stringify({
   friends: friendsArray,
 });
 
+// 使用Buffer对象并指定编码为UTF-8
+const bufferData = Buffer.from(eventualData, 'utf8');
+
 const s3 = new AWS.S3({
   endpoint: "https://s3.bitiful.net",
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -33,9 +36,9 @@ const s3 = new AWS.S3({
 const params = {
   Bucket: "republic",
   Key: "friendsList.json",
-  Body: eventualData,
-  ContentType: "text/plain; charset=utf-8",
-  ContentEncoding: "utf-8",
+  Body: bufferData, // 使用Buffer对象
+  ContentType: "application/json; charset=utf-8", // 指定Content-Type和编码
+  ContentEncoding: "utf-8" // 指定Content-Encoding
 };
 
 s3.upload(params, function (err, data) {

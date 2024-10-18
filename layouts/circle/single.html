@@ -1,0 +1,19 @@
+{{ define "main" }}
+<article>
+  <div id="fs-circle"></div>
+
+  <script type="module">
+    import Galactose from "https://registry.npmmirror.com/@floatsheep/galactose/latest/files/dist/galactose.js";
+
+    const galactose = new Galactose();
+
+    galactose.init({
+      rel: "#fs-circle",
+      page_turning_number: 24,
+      api_url: "https://flink.hesiy.cn",
+      error_img: "./favicon.ico",
+    });
+  </script>
+
+</article>
+{{ end }}

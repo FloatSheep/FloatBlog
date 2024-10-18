@@ -1,3 +1,8 @@
+<link
+  rel="stylesheet"
+  href="https://cdn.hesiy.cn/npm/@waline/client@latest/dist/waline.css"
+/>
+
 <div id="comments-container">
   <center><div class="loading"></div></div></center>
 </div>
@@ -9,7 +14,7 @@
     serverURL: 'https://w-a.hesiy.cn',
     dark: 'html[class="scroll-smooth dark"]',
     search: false,
-     reaction: [
+    reaction: [
       '//registry.npmmirror.com/@waline/emojis/1.2.0/files/tieba/tieba_agree.png',
       '//registry.npmmirror.com/@waline/emojis/1.2.0/files/tieba/tieba_look_down.png',
       '//registry.npmmirror.com/@waline/emojis/1.2.0/files/tieba/tieba_sunglasses.png',
@@ -22,20 +27,3 @@
     ],
   });
 </script>
-
-<!-- <link href="/assets/css/Artalk.css" rel="stylesheet" />
-<script src="/js/Artalk.js"></script> -->
-
-<!-- Artalk -->
-<!-- <div id="Comments"></div>
-
-<script>
-  Artalk.init({
-    el: '#Comments',
-    pageKey: '{{ .Permalink }}',
-    pageTitle: '{{ .Title }}',
-    server: '{{ $.Site.Params.artalk.server }}',
-    site: '{{ $.Site.Params.artalk.site }}',
-    // ...你的其他配置
-  })
-</script> -->

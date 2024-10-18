@@ -147,9 +147,9 @@
           <div class="timeContainer">
             <span id="timeDate" class="text-xs text-neutral-500 dark:text-neutral-400">锟斤拷</span><span id="times" class="text-xs text-neutral-500 dark:text-neutral-400">锟斤拷</span>
             <script>
-                var now = new Date();
+                const now = new Date();
                 function createtime() {
-                    var grt= new Date("02/23/2020 15:46:12");//在此处修改你的建站时间
+                    const grt= new Date("02/23/2020 15:46:12");//在此处修改你的建站时间
                     now.setTime(now.getTime()+250);
                     days = (now - grt ) / 1000 / 60 / 60 / 24; dnum = Math.floor(days);
                     hours = (now - grt ) / 1000 / 60 / 60 - (24 * dnum); hnum = Math.floor(hours);
@@ -204,11 +204,11 @@
     {{ end }}
     <script>
       function getCookie(name) {
-        var decodedCookie = decodeURIComponent(document.cookie);
-        var cookies = decodedCookie.split(';');
-        var fullCookieName = name + "=";
-        for(var i = 0; i < cookies.length; i++) {
-            var cookie = cookies[i].trim();
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split(';');
+        const fullCookieName = name + "=";
+        for(let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
             if (cookie.indexOf(fullCookieName) === 0) {
                 return cookie.substring(fullCookieName.length, cookie.length);
             }
