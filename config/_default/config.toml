@@ -6,7 +6,7 @@ baseURL = "https://blog.hesiy.cn/"
 defaultContentLanguage = "en"
 
 enableRobotsTXT = true
-paginate = 10
+pagerSize = 10
 summaryLength = 0
 hasCJKLanguage = true
 rssLimit = 30
