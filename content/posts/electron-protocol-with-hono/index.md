@@ -1,5 +1,5 @@
 ---
-title: "使用 Hono 简化 Electron 自定义协议处理"
+title: "小记 | 使用 Hono 简化 Electron 自定义协议处理"
 slug: "electron-protocol-with-hono"
 date: 2025-02-05T19:50:23+08:00
 cover: cover.svg
