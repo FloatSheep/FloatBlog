@@ -119,7 +119,7 @@ Fork 完后进入 Actions
 
 ![image-20220625192815258](https://api.hesiy.cn/api/cross?fetch=https://i0.hdslb.com/bfs/album/0703670b18b07223bbe9425f00613183aaf51e4d.png)
 
-## 安装 LSPosed 
+## 安装 LSPosed
 
 [LSPosed Repo](https://github.com/LSPosed/LSPosed/)
 

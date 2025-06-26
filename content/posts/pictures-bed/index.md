@@ -83,7 +83,7 @@ SESSDATA 可以登录哔哩哔哩后查看
 阿里 CDN 路线:
 
 - i1.hdslb.com
-- 14.hdslb.com
+- i4.hdslb.com
 - s1.hdslb.com
 - s3.hdslb.com
 

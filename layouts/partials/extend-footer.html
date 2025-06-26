@@ -1,0 +1,36 @@
+    <script>
+      function getCookie(name) {
+        const decodedCookie = decodeURIComponent(document.cookie);
+        const cookies = decodedCookie.split(';');
+        const fullCookieName = name + "=";
+        for(let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.indexOf(fullCookieName) === 0) {
+                return cookie.substring(fullCookieName.length, cookie.length);
+            }
+        }
+        return undefined;
+    }
+    document.addEventListener('DOMContentLoaded', (event) => {
+      if (document.mB && typeof document.mB.show === 'function') {
+        if(getCookie('mbShow') !== 'true') {
+          document.mB.show("Service Worker 进行了重写！网页出现错误时，可以试试页面底部的两点按键！", true, "我已知晓", "#FFF", "top-right", 5000);
+          document.cookie = "mbShow=true; path=/";
+        }
+      } else {
+          console.error('mB is not defined or show is not a function!');
+      }
+      pagemap(document.querySelector('#pagemap'), {
+          viewport: null,
+          styles: {
+              'header,footer,section,article': 'rgba(0,0,0,0.08)',
+              'h1,a': 'rgba(0,0,0,0.10)',
+              'h2,h3,h4': 'rgba(0,0,0,0.08)'
+          },
+          back: 'rgba(0,0,0,0.02)',
+          view: 'rgba(0,0,0,0.05)',
+          drag: 'rgba(0,0,0,0.10)',
+          interval: null
+      });
+    });
+  </script>

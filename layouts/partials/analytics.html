@@ -7,7 +7,7 @@
   document.addEventListener("DOMContentLoaded", (event) => {
     if ("serviceWorker" in navigator) {
       navigator.serviceWorker
-        .register("/sw.js")
+        .register("/sw.js?t=" + new Date().getTime(), { type: "module" })
         .then(function (registration) {
           console.log("Service Worker 注册成功:", registration);
         })
@@ -23,11 +23,9 @@
     window.fm || (window.fm = {});
 
     window.fm.refresh = () => {
-      if (navigator.serviceWorker.controller) {
-        navigator.serviceWorker.controller.postMessage({
-          action: "force-refresh",
-        });
-      }
+      navigator.serviceWorker.getRegistrations().then((registrations) => {
+        registrations.forEach((sw) => sw.unregister());
+      });
     };
 
     /*     function debounce(func, delay) {

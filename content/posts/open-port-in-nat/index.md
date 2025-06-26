@@ -1,5 +1,5 @@
 ---
-title: "在 NAT 网络环境下获得被外网访问的权利"
+title: "NAT 简介 & 端口开放"
 slug: "open-port-in-nat"
 date: 2024-07-28T12:28:22+08:00
 cover: cover.svg
@@ -9,7 +9,7 @@ categories: "nat"
 tags: ["learn"]
 gemini: true
 showSummary: true
-summary: 我要，重新找回被访问权利！
+summary: NAT 的介绍及 NAT 下端口映射
 ---
 
 {{< alert >}}
