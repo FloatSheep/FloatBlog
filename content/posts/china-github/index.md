@@ -1,5 +1,5 @@
 ---
-title: GitHub 的多种访问方式
+title: 小记 | GitHub 的多种访问方式
 sticky: 1
 tags: [github, gfw]
 showSummary: true

@@ -1,5 +1,5 @@
 ---
-title: "Hugo Shortcodes"
+title: "小记 | Hugo Shortcodes"
 slug: "hugo-shortcodes"
 date: 2023-08-26T10:10:04+08:00
 cover: cover.svg

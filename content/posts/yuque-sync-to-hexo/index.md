@@ -1,5 +1,5 @@
 ---
-title: "记录一下捣鼓语雀文章同步到 Hexo 的过程"
+title: "小记 | 语雀文章同步到 Hexo"
 slug: "yuque-sync-to-hexo"
 date: 2020-01-20T18:36:07+08:00
 cover: cover.svg

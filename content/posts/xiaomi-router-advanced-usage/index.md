@@ -1,5 +1,5 @@
 ---
-title: "小米路由器 - 高级玩法"
+title: "探索 | 小米路由器 - 高级玩法"
 slug: "xiaomi-router-advanced-usage"
 date: 2024-08-13T20:11:47+08:00
 cover: cover.svg

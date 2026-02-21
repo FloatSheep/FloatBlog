@@ -1,5 +1,5 @@
 ---
-title: Electron + Vue + Mdui
+title: 小记 | Electron + Vue + Mdui
 sticky: 1
 tags:
   - electron

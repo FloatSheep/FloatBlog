@@ -1,5 +1,5 @@
 ---
-title: "Windhawk 的简单逆向"
+title: "探索 | Windhawk 的简单逆向"
 slug: "simple-inverse-of-windhawk"
 date: 2024-06-06T14:42:35+08:00
 cover: cover.svg

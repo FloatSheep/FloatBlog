@@ -1,5 +1,5 @@
 ---
-title: "笔记 | 用自动化克服我的懒惰"
+title: "小记 | 用自动化克服我的懒惰"
 slug: "a-practical-use-of-automation"
 date: 2025-06-26T18:14:23+08:00
 cover:

@@ -1,5 +1,5 @@
 ---
-title: "使用 Cloudflare Worker + Vercel 无成本实现 AI 摘要"
+title: "探索 | 使用 Cloudflare Worker + Vercel 无成本实现 AI 摘要"
 slug: "qwen-summary"
 date: 2024-08-31T19:35:38+08:00
 cover: cover.svg

@@ -1,5 +1,5 @@
 ---
-title: "雷池 WAF 社区版安装 + Nginx 配置修改指南"
+title: "探索 | 雷池 WAF 社区版安装 + Nginx 配置修改指南"
 slug: "waf-install"
 date: 2024-01-27T18:23:11+08:00
 cover: cover.svg

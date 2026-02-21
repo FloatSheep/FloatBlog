@@ -1,5 +1,5 @@
 ---
-title: "小米路由器 Docker 折腾指北"
+title: "探索 | 小米路由器 Docker 折腾指北"
 slug: "mi-docker"
 date: 2023-09-30T12:04:28+08:00
 cover: cover.svg

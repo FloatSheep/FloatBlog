@@ -1,5 +1,5 @@
 ---
-title: 那些奇奇怪怪的图床
+title: 小记 | 那些奇奇怪怪的图床
 sticky: 3
 tags: [picgo]
 summary: 图床盘点

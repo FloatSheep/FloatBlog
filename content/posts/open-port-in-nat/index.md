@@ -1,5 +1,5 @@
 ---
-title: "NAT 简介 & 端口开放"
+title: "探索 | NAT 简介 & 端口开放"
 slug: "open-port-in-nat"
 date: 2024-07-28T12:28:22+08:00
 cover: cover.svg

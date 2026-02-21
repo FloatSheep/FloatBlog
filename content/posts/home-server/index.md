@@ -1,5 +1,5 @@
 ---
-title: "家庭服务器指南"
+title: "小记 | 家庭服务器指南"
 slug: "home-server"
 date: 2024-02-07T15:05:18+08:00
 cover: cover.svg

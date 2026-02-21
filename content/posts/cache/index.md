@@ -1,5 +1,5 @@
 ---
-title: "将字体进行缓存，优化网站速度"
+title: "探索 | 将字体进行缓存，优化网站速度"
 slug: "cache-font"
 date: 2023-08-29T11:51:43+08:00
 cover: cover.svg

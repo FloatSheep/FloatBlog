@@ -1,5 +1,5 @@
 ---
-title: "为 Hugo 添加文章摘要"
+title: "小记 | 为 Hugo 添加文章摘要"
 slug: "summary-posts"
 date: 2024-02-03T12:29:19+08:00
 cover: cover.svg
