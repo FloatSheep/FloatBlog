@@ -7,9 +7,9 @@ thumbnail: cover.svg
 draft: false
 categories: "Server"
 tags: ["Docker"]
-gemini: false
+gemini: true
 showSummary: true
-summary:
+summary: 记录一次 Homelab 实践
 ---
 
 ## Zerotier 回家
