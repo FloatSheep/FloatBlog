@@ -154,11 +154,11 @@
   url: https://blog.tsoo.net
   avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.29/files/bbb-lsy07.webp
   description: 科技激荡人文，洞见智慧本真。
-- nickname: "洪畅"
+- nickname: 洪畅
   url: https://blog.hcbu.cn
-  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.29/files/cool.png
+  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.36/files/hcbu.webp
   description: 想，全是问题；做，才有答案。
-- title: Z.L Vansiit's blog
+- nickname: Z.L Vansiit's blog
   url: https://vansiit.cc
+  avatar: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.35/files/vansiit.webp
   description: 技术博客 | 生活随笔 | 唠嗑扯淡
-  image: https://registry.npmmirror.com/@floatsheep/fsl-fim/1.0.35/files/vansiit.webp
